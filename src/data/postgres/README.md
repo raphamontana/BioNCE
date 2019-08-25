@@ -1,0 +1,1 @@
+Temporary folder containing scripts for the postgres chemblDB that could be useful eventually.
