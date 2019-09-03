@@ -1,5 +1,4 @@
 from load_chembl_data import ChemblDataExtraction
-import pandas as pd
 
 def main():
     """ Write .csv file for each target containing both IC50 and Ki types
