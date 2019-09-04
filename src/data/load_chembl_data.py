@@ -44,4 +44,5 @@ class ChemblDataExtraction(object):
         return chemblwrc
 
     def write(self, dataframe):
-        dataframe.to_csv(r'' + path_to_download + '/{}.csv'.format(str(dataframe.name)), sep='\t', encoding='utf-8')
+        dataframe.to_csv(r'' + path_to_download + '/{}.csv'.format(str(dataframe.name)), sep=',', encoding='utf-8',
+                         index=True, index_label='id')
