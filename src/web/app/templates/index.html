@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<section>
+		<h2>Draw or send a file:</h2>
+		<script type="text/javascript" language="javascript" src="/static/jsme/jsme.nocache.js"></script>
+		<style>
+			em {background-color:rgb(102,255,255);}
+		</style>
+
+		<script>
+			//this function will be called after the JavaScriptApplet code has been loaded.
+			function jsmeOnLoad() {
+				jsmeApplet = new JSApplet.JSME("jsme_container", "380px", "340px", {
+					"options" : "star"
+				});
+				jsmeApplet.setNotifyStructuralChangeJSfunction( "show_smiles" );
+			}
+
+			var patt=/\[([A-Za-z][a-z]?)H?\d*:\d+\]/g; //regexp pattern for numbered atom
+			function show_smiles() {
+				//smiles = jsmeApplet.smiles(); //atom that are colored are numbered
+				//new_smiles = smiles.replace(patt, '<em>$1</em>');
+				document.getElementById("smiles_container").innerHTML = jsmeApplet.smiles();
+			}
+
+			function transfer_smiles() {
+				if ( document.getElementById("smilesLines").innerHTML != "" ) {
+					document.getElementById("smilesLines").innerHTML = document.getElementById("smilesLines").innerHTML + "\n" + jsmeApplet.smiles();
+				} else {
+					document.getElementById("smilesLines").innerHTML = jsmeApplet.smiles();
+				}
+			}
+		</script>
+
+		<div id="jsme_container"></div>
+		<p>SMILES: <b><span  id="smiles_container" ></span></b></p>
+		<a onclick="transfer_smiles()" class="button alt">Transfer SMILES >></a>
+		Select a file:
+		<input type="file" id="input" onchange="handleFiles(this.files)">
+	</section>
+	<section>
+		<h2>SMILES</h2>
+		<label for="smiles">Simplified Molecular Input Line Entry Specification:</label>
+		<form action="{{ url_for('result') }}" method="post">
+    		<input type="text" id="smilesLines" name="smilesLines" rows="5" cols="33" />
+			<ul class="actions" align="right">
+				<li><a href="/result" class="button alt">Run</a></li>
+			</ul>
+			<input type="button" id="spotButton" value="Run">
+	        <p>{{ form.submit() }}</p>
+		</form>
+
+	</section>
+{% endblock %}
+
