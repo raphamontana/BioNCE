@@ -125,3 +125,6 @@ dmypy.json
 
 #Unfinished postgres scripts
 /src/data/postgres/
+
+# Dependency directories
+src/web/node_modules/
