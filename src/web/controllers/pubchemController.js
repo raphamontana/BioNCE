@@ -28,7 +28,6 @@ class PubchemFactory {
 
     static parse(json) {
         if (!json.PC_Compounds) return;
-        //console.log(json.PC_Compounds[0].props);
         let props = json.PC_Compounds[0].props;
         let cid = json.PC_Compounds[0].id.id.cid;
         let smiles = this.getProperty(props, 'label', 'SMILES');

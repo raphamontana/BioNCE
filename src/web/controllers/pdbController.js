@@ -2,9 +2,9 @@
  * PDB Controller module.
  * @module controller/pdb
  */
-const fetch = require('node-fetch');
-const xml2js = require('xml2js');
-const PDB = require('../models/pdb');
+const fetch = require("node-fetch");
+const xml2js = require("xml2js");
+const PDB = require("../models/pdb");
 
 // https://www.rcsb.org/pdb/software/rest.do#smiles
 // https://www.rcsb.org/structure/4klb
@@ -15,17 +15,23 @@ const PDB = require('../models/pdb');
 // https://www.ebi.ac.uk/pdbe/graph-api/pdbe_doc/
 // https://www.npmjs.com/package/pdbmine
 
+
 /**
  * @class Chemical Structure searches with SMILES strings.
  */
 class PDBFactory {
-  static SEARCH_URL = "https://www.rcsb.org/pdb/rest/smilesQuery?smiles=<SMILES>&search_type=exact";
-  static DESCRIBE_URL = "http://www.rcsb.org/pdb/rest/describePDB?structureId=<STRUCTUREID>";
+  static SMILES_URL =
+    "https://www.rcsb.org/pdb/rest/smilesQuery?smiles=<SMILES>&search_type=exact";
+  static STRUCTURES_URL =
+    "http://www.rcsb.org/pdb/rest/describePDB?structureId=<STRUCTUREID>";
+  static LIGANDS_URL =
+    "https://www.rcsb.org/pdb/rest/ligandInfo?structureId=<STRUCTUREID>";
 
+  static get RESOLUTION_THRESHOLD() { return 2; }
 
   /**
    * Cast a XML file to a PDBStructure object.
-   * 
+   *
    * @param {string} xml - The data from the URL.
    * @returns {PDBStructure} The PDBStructure object.
    */
@@ -41,25 +47,49 @@ class PDBFactory {
     let description = json.PDBdescription.PDB[0].$.title;
     let resolution = json.PDBdescription.PDB[0].$.resolution;
     // Create the object.
-    let structure = new PDB.PDBStructure(structureId, description, resolution);
-    return(structure);
+    let structure = {structureId, description, resolution};
+    return structure;
+  }
+
+
+  static parseLigandInfo(xml) {
+    if (!xml) return;
+    // Parse the string to XML Object.
+    let json;
+    xml2js.parseString(xml, (_err, result) => {
+      json = result;
+    });
+    // Get structure data.
+    let ligandList = [];
+    json.structureId.ligandInfo[0].ligand.forEach(ligand => {
+      ligandList.push(ligand.$.chemicalID);
+    });
+    // Return the object.
+    return(ligandList);
   }
 
 
   /**
    * Return data given a structure ID.
-   * 
+   *
    * @async
    * @param {string} structureId - The protein ID to fetch.
    * @returns {PDBStructure} A protein structure.
    */
   static async fetchStructure(structureId) {
-    let url = this.DESCRIBE_URL.replace('<STRUCTUREID>', structureId);
+    let structureUrl = this.STRUCTURES_URL.replace("<STRUCTUREID>", structureId);
+    let ligandUrl = this.LIGANDS_URL.replace("<STRUCTUREID>", structureId);
     try {
-      const res = await fetch(url);
-      let xml = await res.text();
-      let structure = this.parseStructure(xml);
-      return(structure);
+      const structureRes = await fetch(structureUrl);
+      if (!structureRes.ok) return;
+      let structureXml = await structureRes.text();
+      let structure = this.parseStructure(structureXml);
+      const ligandRes = await fetch(ligandUrl);
+      if (!ligandRes.ok) return;
+      let ligandXML = await ligandRes.text();
+      let ligands = this.parseLigandInfo(ligandXML);
+      let pdbStructure = new PDB.PDBStructure(structure.structureId, structure.description, structure.resolution, ligands);
+      return(pdbStructure);
     } catch (err) {
       console.log(err);
     }
@@ -68,11 +98,11 @@ class PDBFactory {
 
   /**
    * Cast a XML file to a PDBLigand object.
-   * 
+   *
    * @param {string} xml - The data from the URL.
    * @returns {PDBLigand} The PDBLigand object.
    */
-  static async parseLigand(xml) {
+  static async parsePDB(xml) {
     if (!xml) return;
     // Parse the string to XML Object.
     let json;
@@ -80,45 +110,43 @@ class PDBFactory {
       json = result;
     });
     // Get ligand data.
-    let chemicalID = json.smilesQueryResult.ligandInfo[0].ligand[0].$.chemicalID;
-    let molecularWeight = json.smilesQueryResult.ligandInfo[0].ligand[0].$.molecularWeight;
-    let chemicalName = json.smilesQueryResult.ligandInfo[0].ligand[0].chemicalName;
-    let formula = json.smilesQueryResult.ligandInfo[0].ligand[0].formula;
-    let smiles = json.smilesQueryResult.ligandInfo[0].ligand[0].smiles;
+    let ligand = json.smilesQueryResult.ligandInfo[0].ligand;
+    let chemicalID = ligand[0].$.chemicalID;
+    let molecularWeight = ligand[0].$.molecularWeight;
+    let chemicalName = ligand[0].chemicalName;
+    let formula = ligand[0].formula;
+    let smiles = ligand[0].smiles;
     // Get structures list.
     let structures = [];
-    for (let l in json.smilesQueryResult.ligandInfo[0].ligand) {
-      let structureId = json.smilesQueryResult.ligandInfo[0].ligand[l].$.structureId;
-      let structure = await this.fetchStructure(structureId);
-      structures.push(structure);
-    }
+    await Promise.all(
+      ligand.map(async (element) => {
+        let structure = await this.fetchStructure(element.$.structureId);
+        structures.push(structure);
+    }));
     // Create the object.
-    let ligand = new PDB.PDBLigand(chemicalID, chemicalName, formula, smiles, molecularWeight, structures);
-    return(ligand);
+    return(new PDB.PDBLigand(chemicalID, chemicalName, formula, smiles, molecularWeight, structures));
   }
 
 
   /**
    * Search for ligands and PDB IDs based on a SMILES query.
-   * 
+   *
    * @async
    * @param {string} smiles - The query.
    * @returns {Promise<Object>} A ligand object.
    */
   static async searchLigandBySmiles(smiles) {
-    let url = this.SEARCH_URL.replace('<SMILES>', encodeURIComponent(smiles));
+    /// TODO: Treat caracter '@' conversion.
+    let url = this.SMILES_URL.replace("<SMILES>", encodeURIComponent(smiles));
     try {
       const res = await fetch(url);
       if (!res.ok) return;
       let xml = await res.text();
-      let pdb = await this.parseLigand(xml);
-      //console.log(pdb);
-      return(pdb);
+      return(await this.parsePDB(xml));
     } catch (err) {
       console.log(err);
     }
   }
 }
-
 
 module.exports = PDBFactory;

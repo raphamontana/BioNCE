@@ -24,6 +24,7 @@
     "morgan": "~1.9.1",
     "node-fetch": "^2.6.0",
     "nunjucks": "^3.2.1",
+    "papaparse": "^5.2.0",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {

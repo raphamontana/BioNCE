@@ -1,17 +1,19 @@
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const compression = require('compression');
 const createError = require('http-errors');
 const express = require('express');
 const helmet = require('helmet')
 const nunjucks = require('nunjucks')
 
-const app = express()
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(bodyParser.text())
+const app = express();
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json());
+app.use(bodyParser.text());
 app.use(compression());
 app.use(express.static('public'));
-app.use(helmet())
+app.use(helmet());
 
 nunjucks.configure('views', {
     autoescape: true,

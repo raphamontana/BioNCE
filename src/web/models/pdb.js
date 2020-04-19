@@ -1,47 +1,56 @@
-// Protein Data Bank
-
 /**
- * @class A protein structure.
+ * @class A Protein Data Bank structure.
  */
 class PDBStructure {
     /**
      * @constructs
-     * @param {string} structureId - The ID of the ligand.
-     * @param {string} description - The chemical name.
-     * @param {number} resolution - The molecular formula.
+     * @param {string} structureId - The ID of the structure.
+     * @param {string} description - The chemical description.
+     * @param {number} resolution - The resolution.
+     * @param {string[]} ligands - The ligands.
      */
-    constructor(structureId, description, resolution) {
-        this.structureId = structureId;
+    constructor(id, description, resolution, ligands) {
+        this.id = id;
         this.description = description;
         this.resolution = resolution;
+        this.ligands = ligands;
         //this.doi = doi;
     }
 }
 
 /**
- * @class A protein ligand.
+ * @class A Protein Data Bank ligand.
  */
 class PDBLigand {
     /**
      * @constructs
-     * @param {string} chemicalID - The ID of the ligand.
-     * @param {string} chemicalName - The chemical name.
+     * @param {string} id - The chemical ID of the ligand.
+     * @param {string} name - The chemical name.
      * @param {string} formula - The molecular formula.
      * @param {string} smiles - The SMILES representation.
-     * @param {number} molecularWeight - The molecular weight.
+     * @param {number} weight - The molecular weight.
      * @param {Object[]} structures - A list of structures.
      */
-    constructor(chemicalID, chemicalName, formula, smiles, molecularWeight, structures) {
-        this.chemicalID = chemicalID;
-        this.name = chemicalName;
+    constructor(id, name, formula, smiles, weight, structures) {
+        this.id = id;
+        this.name = name;
         this.formula = formula;
         this.smiles = smiles;
-        this.molecularWeight = molecularWeight;
+        this.weight = weight;
         this.structures = structures;
+    }
+
+    // Getter
+    get structuresList() {
+        let sList = [];
+        this.structures.forEach(s => {
+            sList.push(s.id);
+        });
+        return (sList);
     }
 }
 
 module.exports = {
-  PDBLigand : PDBLigand,
-  PDBStructure : PDBStructure
+    PDBLigand: PDBLigand,
+    PDBStructure: PDBStructure
 };

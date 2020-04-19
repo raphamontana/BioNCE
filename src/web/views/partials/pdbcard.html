@@ -2,29 +2,38 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">
-                      <a href="https://www.ebi.ac.uk/chembl/compound_report_card/{{ mol.chembl.chembl_id }}/" target="_blank">{{ mol.chembl.chembl_id }}</a>
-                      <span title="Export data" style="float: right"><a><i class="ti-export"></i></a></span>
+                      <a href="https://www.rcsb.org/ligand/{{ mol.pdb.id }}" target="_blank">PDB ligand {{ mol.pdb.id }}</a>
+                      <span title="Export data" style="float: right;"><a href="https://files.rcsb.org/ligands/view/{{ mol.pdb.id }}_model.sdf"><i class="ti-export"></i></a></span>
                     </h4>
                     <hr />
-                    <p>Name: <span style="float: right">{{ mol.chembl.pref_name }}</span></p>
-                    <p>Smiles: <span style="float: right">{{ mol.chembl.smiles }}</span></p>
-                    <p>Molecular Formula: <span style="float: right">{{ mol.chembl.molformula }}</span></p>
-                    <p>Black box warning: <span style="float: right">{{ mol.chembl.black_box_warning }}</span></p>
-                    <p>Chirality: <span style="float: right">{{ mol.chembl.chirality }}</span></p>
-                    <p>Max Phase: <span style="float: right">{{ mol.chembl.max_phase }}</span></p>
-                    <p>ALogP: <span style="float: right">{{ mol.chembl.alogp }}</span></p>
-                    <p>Aromatic Rings: <span style="float: right">{{ mol.chembl.aromatic_rings }}</span></p>
-                    <p>CX LogD pH7.4: <span style="float: right">{{ mol.chembl.cx_logd }}</span></p>
-                    <p>CX LogP: <span style="float: right">{{ mol.chembl.cx_logp }}</span></p>
-                    <p>CX Acidic pKa: <span style="float: right">{{ mol.chembl.cx_most_apka }}</span></p>
-                    <p>Molecular Weight: <span style="float: right">{{ mol.chembl.full_mwt }}</span></p>
-                    <p>Hydrogen Bond Acceptor: <span style="float: right">{{ mol.chembl.hba }}</span></p>
-                    <p>Hydrogen Bond Donor: <span style="float: right">{{ mol.chembl.hbd }}</span></p>
-                    <p>Heavy atoms: <span style="float: right">{{ mol.chembl.heavy_atoms }}</span></p>
-                    <p>Polar Surface Area: <span style="float: right">{{ mol.chembl.psa }}</span></p>
-                    <p>QED Weighted: <span style="float: right">{{ mol.chembl.qed_weighted }}</span></p>
-                    <p>RO3 Pass: <span style="float: right">{{ mol.chembl.ro3_pass }}</span></p>
-                    <p>#Rotatable Bonds: <span style="float: right">{{ mol.chembl.rtb }}</span></p>
+                    <p><img src="https://cdn.rcsb.org/images/ccd/unlabeled/{{ mol.pdb.id[0] }}/{{ mol.pdb.id }}.svg" width="100px"/></p>
+                    <p><b>Name:</b> <span style="float: right">{{ mol.pdb.name }}</span></p>
+                    <p><b>Molecular Formula:</b> <span style="float: right">{{ mol.pdb.formula }}</span></p>
+                    <p><b>Molecular Weight:</b> <span style="float: right">{{ mol.pdb.weight }}</span></p>
+                    <div class="form-group">
+                      <label for="structures"><b>Structures:</b></label>
+                      <select class="form-control" id="structures">
+                        {% for structure in mol.pdb.structures %}
+                        <option value="{{ loop.index0 }}">{{structure.id}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <hr />
+                    <h4 class="card-title">Structure: <span style="float: right"><a href="https://www.rcsb.org/structure/{{mol.pdb.structures[0].id}}" target="_blank">{{mol.pdb.structures[0].id}}</a></span></h4>
+                    <p><b>Description:</b> {{mol.pdb.structures[0].description}}</p>
+                    <p><b>DOI:</b> <span style="float: right"><a href="http://doi.org/10.2210/pdb{{mol.pdb.structures[0].id}}/pdb" target="_blank"><i class="ti-link"></i></a></span></p>
+                    <p><b>Download:</b> <span style="float: right"><a href="https://files.rcsb.org/download/{{mol.pdb.structures[0].id}}.pdb">{{mol.pdb.structures[0].id}}.pdb</a></span></p>
+                    <div class="form-group">
+                      <label for="ligands"><b>Ligands:</b></label>
+                      <select class="form-control" id="ligands">
+                        {% for ligand in mol.pdb.structures[0].ligands %}
+                        <option value="{{ loop.index0 }}">{{ ligand }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <hr />
+                    <h4 class="card-title">Ligand: <span style="float: right"><a href="https://www.rcsb.org/ligand/{{ mol.pdb.id }}" target="_blank">{{ mol.pdb.id }}</a></span></h4>
+                    <a href="https://www.rcsb.org/3d-view/{{mol.pdb.structures[0].id}}?preset=ligandInteraction&sele={{ mol.pdb.id }}" target="_blank"><button type="button" class="btn btn-primary">3D Interactions</button></a>
                   </div>
                 </div>
               </div>

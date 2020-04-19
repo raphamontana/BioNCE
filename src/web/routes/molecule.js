@@ -1,31 +1,41 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const PubchemController = require('../controllers/pubchemController');
-const ChemblController = require('../controllers/chemblController');
-const PDBController = require('../controllers/pdbController');
+const MoleculeController = require("../controllers/moleculeController");
 
-router.get('/', async function (req, res) {
+// @TODO Replace server-side await with client-side fetch.
+// https://www.xul.fr/en/html5/fetch.php
+// https://stackoverflow.com/questions/49813883/nunjucks-async-rendering-with-keystone-view
+// https://mozilla.github.io/nunjucks/api.html#asynchronous
+router.get("/", async function (req, res) {
   let smiles = req.query.smiles;
-  let pubchem = PubchemController.fetch(smiles);
-  let chembl = ChemblController.fetch(smiles);
-  let pdb = PDBController.searchLigandBySmiles(smiles);
-  res.render('molecule.html', {smiles: smiles, pubchem: await pubchem,
-                               chembl: await chembl, error: null});
-})
+  if (!smiles) {
+    res.render("molecule.html", {
+      mols: null,
+      error: "No SMILES to search."
+    });
+  } else {
+    let molecules = await MoleculeController.searchBySmiles(smiles);
+    res.render("molecule.html", {
+      mols: molecules,
+      error: null
+    });
+  }
+});
 
-router.post('/', async function (req, res) {
-  let smilesList = req.body.smiles;
-  smilesList = smilesList.match(/[^\r\n]+/g).map(item => item.trim());
-  console.log(smilesList);
-  let molecules = [];
-  await Promise.all(smilesList.map(async (smiles) => {
-    let pubchem = PubchemController.fetch(smiles);
-    let chembl = ChemblController.fetch(smiles);
-    let pdb = PDBController.searchLigandBySmiles(smiles);
-    mol = { "smiles": smiles, "pubchem": await pubchem, "chembl": await chembl, "pdb": await pdb };
-    molecules.push(mol);
-  }));
-  res.render('newmolecule.html', {"mols": molecules, "error": null});
-})
+router.post("/", async function (req, res) {
+  let smiles = req.body.smiles;
+  if (!smiles) {
+    res.render("molecule.html", {
+      mols: null,
+      error: "No SMILES to search."
+    });
+  } else {
+    let molecules = await MoleculeController.searchBySmiles(smiles);
+    res.render("molecule.html", {
+      mols: molecules,
+      error: null
+    });
+  }
+});
 
 module.exports = router;

@@ -1,8 +1,10 @@
-
+/**
+ * @class The PubChem class.
+ */
 class Pubchem {
     constructor(cid, smiles, name, formula, mass, logp, heavy_atoms, atom_chiral,
-                tautomers, hydrogen_bond_acceptor, hydrogen_bond_donor,
-                rotatable_bond, polar_surface_area) {
+        tautomers, hydrogen_bond_acceptor, hydrogen_bond_donor,
+        rotatable_bond, polar_surface_area) {
         this.cid = cid;
         this.smiles = smiles;
         this.name = name;

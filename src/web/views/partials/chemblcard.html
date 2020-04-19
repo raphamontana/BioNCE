@@ -1,30 +1,77 @@
-              <div class="col-md-3 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="https://www.ebi.ac.uk/chembl/compound_report_card/{{ mol.chembl.chembl_id }}/" target="_blank">{{ mol.chembl.chembl_id }}</a>
-                      <span title="Export data" style="float: right"><a><i class="ti-export"></i></a></span>
-                    </h4>
-                    <hr />
-                    <p>Name: <span style="float: right">{{ mol.chembl.pref_name }}</span></p>
-                    <p>Smiles: <span style="float: right">{{ mol.chembl.smiles }}</span></p>
-                    <p>Molecular Formula: <span style="float: right">{{ mol.chembl.molformula }}</span></p>
-                    <p>Black box warning: <span style="float: right">{{ mol.chembl.black_box_warning }}</span></p>
-                    <p>Chirality: <span style="float: right">{{ mol.chembl.chirality }}</span></p>
-                    <p>Max Phase: <span style="float: right">{{ mol.chembl.max_phase }}</span></p>
-                    <p>ALogP: <span style="float: right">{{ mol.chembl.alogp }}</span></p>
-                    <p>Aromatic Rings: <span style="float: right">{{ mol.chembl.aromatic_rings }}</span></p>
-                    <p>CX LogD pH7.4: <span style="float: right">{{ mol.chembl.cx_logd }}</span></p>
-                    <p>CX LogP: <span style="float: right">{{ mol.chembl.cx_logp }}</span></p>
-                    <p>CX Acidic pKa: <span style="float: right">{{ mol.chembl.cx_most_apka }}</span></p>
-                    <p>Molecular Weight: <span style="float: right">{{ mol.chembl.full_mwt }}</span></p>
-                    <p>Hydrogen Bond Acceptor: <span style="float: right">{{ mol.chembl.hba }}</span></p>
-                    <p>Hydrogen Bond Donor: <span style="float: right">{{ mol.chembl.hbd }}</span></p>
-                    <p>Heavy atoms: <span style="float: right">{{ mol.chembl.heavy_atoms }}</span></p>
-                    <p>Polar Surface Area: <span style="float: right">{{ mol.chembl.psa }}</span></p>
-                    <p>QED Weighted: <span style="float: right">{{ mol.chembl.qed_weighted }}</span></p>
-                    <p>RO3 Pass: <span style="float: right">{{ mol.chembl.ro3_pass }}</span></p>
-                    <p>#Rotatable Bonds: <span style="float: right">{{ mol.chembl.rtb }}</span></p>
-                  </div>
-                </div>
-              </div>
+<div class="col-md-3 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">
+        <a
+          href="https://www.ebi.ac.uk/chembl/compound_report_card/{{ mol.chembl.id }}/"
+          target="_blank"
+          >{{ mol.chembl.id }}</a
+        >
+        <span title="Export data" style="float: right;"><a><i class="ti-export"></i></a></span>
+      </h4>
+      <hr />
+      <p>Name: <span style="float: right;">{{ mol.chembl.pref_name }}</span></p>
+      <p>
+        Molecular Formula:
+        <span style="float: right;">{{ mol.chembl.formula }}</span>
+      </p>
+      <p>
+        Black box warning:
+        <span style="float: right;">{{ mol.chembl.bbw }}</span>
+      </p>
+      <p>
+        Chirality: <span style="float: right;">{{ mol.chembl.chirality }}</span>
+      </p>
+      <p>
+        Max Phase: <span style="float: right;">{{ mol.chembl.max_phase }}</span>
+      </p>
+      <p>ALogP: <span style="float: right;">{{ mol.chembl.alogp }}</span></p>
+      <p>
+        Aromatic Rings:
+        <span style="float: right;">{{ mol.chembl.aromatic_rings }}</span>
+      </p>
+      <p>
+        CX LogD pH7.4:
+        <span style="float: right;">{{ mol.chembl.cx_logd }}</span>
+      </p>
+      <p>
+        CX LogP: <span style="float: right;">{{ mol.chembl.cx_logp }}</span>
+      </p>
+      <p>
+        CX Acidic pKa:
+        <span style="float: right;">{{ mol.chembl.cx_most_apka }}</span>
+      </p>
+      <p>
+        Molecular Weight:
+        <span style="float: right;">{{ mol.chembl.full_mwt }}</span>
+      </p>
+      <p>
+        Hydrogen Bond Acceptor:
+        <span style="float: right;">{{ mol.chembl.hba }}</span>
+      </p>
+      <p>
+        Hydrogen Bond Donor:
+        <span style="float: right;">{{ mol.chembl.hbd }}</span>
+      </p>
+      <p>
+        Heavy atoms:
+        <span style="float: right;">{{ mol.chembl.heavy_atoms }}</span>
+      </p>
+      <p>
+        Polar Surface Area:
+        <span style="float: right;">{{ mol.chembl.psa }}</span>
+      </p>
+      <p>
+        QED Weighted:
+        <span style="float: right;">{{ mol.chembl.qed_weighted }}</span>
+      </p>
+      <p>
+        RO3 Pass: <span style="float: right;">{{ mol.chembl.ro3_pass }}</span>
+      </p>
+      <p>
+        #Rotatable Bonds:
+        <span style="float: right;">{{ mol.chembl.rtb }}</span>
+      </p>
+    </div>
+  </div>
+</div>
