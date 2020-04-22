@@ -3,6 +3,7 @@ const compression = require('compression');
 const createError = require('http-errors');
 const express = require('express');
 const helmet = require('helmet')
+//const morgan = require("morgan")
 const nunjucks = require('nunjucks')
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(bodyParser.text());
 app.use(compression());
 app.use(express.static('public'));
 app.use(helmet());
+//app.use(morgan("combined"))
 
 nunjucks.configure('views', {
     autoescape: true,
@@ -26,4 +28,5 @@ app.use('/dbsearch', require('./routes/dbsearch'));
 app.use('/molecule', require('./routes/molecule'));
 app.use('/smiles', require('./routes/smiles'));
 
-app.listen(80, () => console.log('App listening on port 80.'));
+let port = 3002
+app.listen(port, () => console.log("'App listening on port " + port + '.'));

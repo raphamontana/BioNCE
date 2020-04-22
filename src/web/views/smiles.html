@@ -110,6 +110,8 @@
                   <a class="dropdown-item" onclick="fillExample('asa');">Acetylsalicylic Acid</a>
                   <a class="dropdown-item" onclick="fillExample('vas');">Atorvastatin</a>
                   <a class="dropdown-item" onclick="fillExample('azi');">Azithromycin</a>
+                  <a class="dropdown-item" onclick="fillExample('ibu');">Ibuprofen</a>
+                  <a class="dropdown-item" onclick="fillExample('ome');">Omeprazole</a>
                   <a class="dropdown-item" onclick="fillExample('sil');">Sildenafil</a>
                 </div>
               </div>
@@ -182,10 +184,12 @@
   }
   function fillExample(drug) {
     let smiles;
-    if (drug=="asa") smiles = "CC(=O)OC1=CC=CC=C1C(=O)O"; // ASPIRIN
-    else if (drug=="sil") smiles = "CCCc1nn(C)c2c(=O)[nH]c(-c3cc(S(=O)(=O)N4CCN(C)CC4)ccc3OCC)nc12"; //  SILDENAFIL
-    else if (drug=="vas") smiles = "CC(C)C1=C(C(=C(N1CCC(CC(CC(=O)O)O)O)C2=CC=C(C=C2)F)C3=CC=CC=C3)C(=O)NC4=CC=CC=C4"; // ATORVASTATIN
-    else if (drug=="azi") smiles = "CC[C@H]1OC(=O)[C@H](C)[C@@H](O[C@H]2C[C@@](C)(OC)[C@@H](O)[C@H](C)O2)[C@H](C)[C@@H](O[C@@H]2O[C@H](C)C[C@H](N(C)C)[C@H]2O)[C@](C)(O)C[C@@H](C)CN(C)[C@H](C)[C@@H](O)[C@]1(C)O"; //  AZITHROMYCIN
+    if (drug=="asa") smiles = "CC(=O)OC1=CC=CC=C1C(=O)O"; // Aspirin
+    else if (drug=="ibu") smiles = "CC(C)CC1=CC=C(C=C1)C(C)C(=O)O"; // Ibuprofen
+    else if (drug=="ome") smiles = "CC1=CN=C(C(=C1OC)C)CS(=O)C2=NC3=C(N2)C=CC(=C3)OC"; // Omeprazole
+    else if (drug=="sil") smiles = "CCCc1nn(C)c2c(=O)[nH]c(-c3cc(S(=O)(=O)N4CCN(C)CC4)ccc3OCC)nc12"; // Sildenafil
+    else if (drug=="vas") smiles = "CC(C)C1=C(C(=C(N1CCC(CC(CC(=O)O)O)O)C2=CC=C(C=C2)F)C3=CC=CC=C3)C(=O)NC4=CC=CC=C4"; // Atorvastatin
+    else if (drug=="azi") smiles = "CC[C@H]1OC(=O)[C@H](C)[C@@H](O[C@H]2C[C@@](C)(OC)[C@@H](O)[C@H](C)O2)[C@H](C)[C@@H](O[C@@H]2O[C@H](C)C[C@H](N(C)C)[C@H]2O)[C@](C)(O)C[C@@H](C)CN(C)[C@H](C)[C@@H](O)[C@]1(C)O"; // Azithromycin
     document.getElementById("container-search").value = smiles;
     document.getElementById("bulk-search").innerHTML = document.getElementById("bulk-search").innerHTML + smiles + '\n';
   }
