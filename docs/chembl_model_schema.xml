@@ -1,0 +1,381 @@
+<?xml version='1.0' encoding='utf-8'?>
+<response>
+<allowed_detail_http_methods><value>get</value></allowed_detail_http_methods>
+<allowed_list_http_methods><value>get</value></allowed_list_http_methods>
+<default_format>application/xml</default_format>
+<default_limit>20</default_limit>
+    <fields>
+        <atc_classifications>
+            <blank>True</blank>
+            <default>No default provided.</default>
+            <help_text>Many related resources. Can be either a list of URIs or list of individually nested resource data.</help_text>
+            <nullable>True</nullable>
+            <primary_key/>
+            <readonly/>
+            <related_schema>/chembl/api/data/atc_class/schema</related_schema>
+            <related_type>to_many</related_type>
+            <schema>
+                <fields>
+                    <level1><blank/><default>No default provided.</default><help_text>First level of classification</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>level1</verbose_name></level1>
+                    <level1_description><blank/><default>No default provided.</default><help_text>Description of first level of classification</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>level1 description</verbose_name></level1_description>
+                    <level2><blank/><default>No default provided.</default><help_text>Second level of classification</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>level2</verbose_name></level2>
+                    <level2_description><blank/><default>No default provided.</default><help_text>Description of second level of classification</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>level2 description</verbose_name></level2_description>
+                    <level3><blank/><default>No default provided.</default><help_text>Third level of classification</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>level3</verbose_name></level3>
+                    <level3_description><blank/><default>No default provided.</default><help_text>Description of third level of classification</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>level3 description</verbose_name></level3_description>
+                    <level4><blank/><default>No default provided.</default><help_text>Fourth level of classification</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>level4</verbose_name></level4>
+                    <level4_description><blank/><default>No default provided.</default><help_text>Description of fourth level of classification</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>level4 description</verbose_name></level4_description>
+                    <level5><blank/><default>No default provided.</default><help_text>Complete ATC code for compound</help_text><nullable/><primary_key>True</primary_key><readonly/><type>string</type><unique>True</unique><verbose_name>level5</verbose_name></level5>
+                    <who_name><blank/><default>No default provided.</default><help_text>WHO/INN name for the compound</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>who name</verbose_name></who_name>
+                </fields>
+                <filtering>
+                    <level1><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></level1>
+                    <level1_description><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></level1_description>
+                    <level2><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></level2>
+                    <level2_description><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></level2_description>
+                    <level3><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></level3>
+                    <level3_description><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></level3_description>
+                    <level4><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></level4>
+                    <level4_description><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></level4_description>
+                    <level5><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></level5>
+                    <who_id><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></who_id>
+                    <who_name><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></who_name>
+                </filtering>
+                <ordering>
+                    <value>level1</value>
+                    <value>level1_description</value>
+                    <value>level2</value>
+                    <value>level2_description</value>
+                    <value>level3</value>
+                    <value>level3_description</value>
+                    <value>level4</value>
+                    <value>level4_description</value>
+                    <value>level5</value>
+                    <value>who_id</value>
+                    <value>who_name</value>
+                </ordering>
+            </schema>
+            <type>related</type>
+            <unique/>
+            <verbose_name>atc classifications</verbose_name>
+        </atc_classifications>
+        <availability_type><blank/><default>No default provided.</default><help_text>The availability type for the drug (0 = discontinued, 1 = prescription only, 2 = over the counter)</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>availability type</verbose_name></availability_type>
+        <biotherapeutic>
+            <blank>True</blank>
+            <default>No default provided.</default>
+            <help_text>A single related resource. Can be either a URI or set of nested resource data.</help_text>
+            <nullable>True</nullable><primary_key/>
+            <readonly/>
+            <related_schema>/chembl/api/data/biotherapeutic/schema</related_schema>
+            <related_type>to_one</related_type>
+            <schema>
+                <fields>
+                    <biocomponents><blank>True</blank><default>No default provided.</default><help_text>Many related resources. Can be either a list of URIs or list of individually nested resource data.</help_text><nullable>True</nullable><primary_key/><readonly/><related_schema/><related_type>to_many</related_type>
+                        <schema>
+                            <fields>
+                                <component_id><blank>True</blank><default/><help_text>Primary key. Unique identifier for each of the molecular components of biotherapeutics in ChEMBL (e.g., antibody chains, recombinant proteins, synthetic peptides).</help_text><nullable/><primary_key>True</primary_key><readonly/><type>integer</type><unique>True</unique><verbose_name>component id</verbose_name></component_id>
+                                <component_type><blank/><default>No default provided.</default><help_text>Type of molecular component (e.g., 'PROTEIN','DNA','RNA').</help_text><nullable/><primary_key/><readonly/><type>string</type><unique/><verbose_name>component type</verbose_name></component_type>
+                                <description><blank/><default>No default provided.</default><help_text>Description/name of molecular component.</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>description</verbose_name></description>
+                                <organism><blank/><default>No default provided.</default><help_text>Name of the species from which the sequence is derived.</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>organism</verbose_name></organism>
+                                <sequence><blank/><default/><help_text>Sequence of the biotherapeutic component.</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>sequence</verbose_name></sequence>
+                                <tax_id><blank/><default>No default provided.</default><help_text>NCBI tax ID for the species from which the sequence is derived. May be null for humanized monoclonal antibodies, synthetic peptides etc.</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>tax id</verbose_name></tax_id>
+                            </fields>
+                            <filtering>
+                                <component_id><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></component_id>
+                                <component_type><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></component_type>
+                                <organism><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></organism>
+                                <tax_id><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></tax_id>
+                            </filtering>
+                            <ordering>
+                                <value>component_id</value>
+                                <value>component_type</value>
+                                <value>organism</value>
+                                <value>tax_id</value>
+                            </ordering>
+                        </schema>
+                        <type>related</type>
+                        <unique/>
+                        <verbose_name>biocomponents</verbose_name>
+                    </biocomponents>
+                    <description><blank/><default>No default provided.</default><help_text>Description of the biotherapeutic.</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>description</verbose_name></description>
+                    <helm_notation><blank/><default>No default provided.</default><help_text>Sequence notation generated according to the HELM standard (http://www.openhelm.org/home). Currently for peptides only</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>helm notation</verbose_name></helm_notation>
+                    <molecule_chembl_id><blank>True</blank><default>No default provided.</default><help_text>Unicode string data. Ex: "Hello World"</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>molecule chembl id</verbose_name></molecule_chembl_id>
+                </fields>
+                <filtering>
+                    <description><value>exact</value><value>isnull</value></description>
+                    <helm_notation><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></helm_notation>
+                    <molecule_chembl_id><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></molecule_chembl_id>
+                </filtering>
+                <ordering>
+                    <value>molecule_chembl_id</value>
+                    <value>helm_notation</value>
+                </ordering>
+            </schema>
+            <type>related</type>
+            <unique/>
+            <verbose_name>biotherapeutic</verbose_name>
+        </biotherapeutic>
+        <black_box_warning><blank/><default/><help_text>Indicates that the drug has a black box warning</help_text><nullable/><primary_key/><readonly/><type>integer</type><unique/><verbose_name>black box warning</verbose_name></black_box_warning>
+        <chebi_par_id><blank/><default>No default provided.</default><help_text>Preferred ChEBI ID for the compound (where different from assigned)</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>chebi par id</verbose_name></chebi_par_id>
+        <chirality><blank/><default>-1</default><help_text>Shows whether a drug is dosed as a racemic mixture (0), single stereoisomer (1) or is an achiral molecule (2)</help_text><nullable/><primary_key/><readonly/><type>integer</type><unique/><verbose_name>chirality</verbose_name></chirality>
+        <cross_references>
+            <blank>True</blank>
+            <default>No default provided.</default>
+            <help_text>Many related resources. Can be either a list of URIs or list of individually nested resource data.</help_text>
+            <nullable>True</nullable>
+            <primary_key/>
+            <readonly/>
+            <related_schema/>
+            <related_type>to_many</related_type>
+            <schema>
+                <fields>
+                    <xref_id><blank/><default>No default provided.</default><help_text>Identifier for the entry in the cross-referenced database</help_text><nullable/><primary_key/><readonly/><type>string</type><unique>True</unique><verbose_name>xref id</verbose_name></xref_id>
+                    <xref_name><blank/><default>No default provided.</default><help_text>Name for the entry in the cross-referenced database, where applicable</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>xref name</verbose_name></xref_name>
+                    <xref_src><blank/><default>No default provided.</default><help_text>Unicode string data. Ex: "Hello World"</help_text><nullable/><primary_key/><readonly/><type>string</type><unique/><verbose_name>xref src</verbose_name></xref_src>
+                </fields>
+            </schema>
+            <type>related</type>
+            <unique/>
+            <verbose_name>cross references</verbose_name>
+        </cross_references>
+        <dosed_ingredient><blank/><default/><help_text>Indicates that the drug is dosed in this form (e.g., a particular salt)</help_text><nullable/><primary_key/><readonly/><type>boolean</type><unique/><verbose_name>dosed ingredient</verbose_name></dosed_ingredient>
+        <first_approval><blank/><default>No default provided.</default><help_text>Earliest known approval year for the molecule</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>first approval</verbose_name></first_approval>
+        <first_in_class><blank/><default>-1</default><help_text>Indicates whether this is known to be the first compound of its class (e.g., acting on a particular target).</help_text><nullable/><primary_key/><readonly/><type>integer</type><unique/><verbose_name>first in class</verbose_name></first_in_class>
+        <helm_notation><blank>True</blank><default>No default provided.</default><help_text>Unicode string data. Ex: "Hello World"</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>helm notation</verbose_name></helm_notation>
+        <indication_class><blank/><default>No default provided.</default><help_text>Indication class(es) assigned to a drug in the USP dictionary</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>indication class</verbose_name></indication_class>
+        <inorganic_flag><blank/><default/><help_text>Indicates whether the molecule is inorganic (i.e., containing only metal atoms and &lt;2 carbon atoms)</help_text><nullable/><primary_key/><readonly/><type>integer</type><unique/><verbose_name>inorganic flag</verbose_name></inorganic_flag>
+        <max_phase><blank/><default/><help_text>Maximum phase of development reached for the compound (4 = approved). Null where max phase has not yet been assigned.</help_text><nullable/><primary_key/><readonly/><type>integer</type><unique/><verbose_name>max phase</verbose_name></max_phase>
+        <molecule_chembl_id><blank/><default>No default provided.</default><help_text>Unicode string data. Ex: "Hello World"</help_text><nullable/><primary_key/><readonly/><type>string</type><unique/><verbose_name>molecule chembl id</verbose_name></molecule_chembl_id>
+        <molecule_hierarchy>
+            <blank>True</blank>
+            <default>No default provided.</default>
+            <help_text>A single related resource. Can be either a URI or set of nested resource data.</help_text>
+            <nullable>True</nullable>
+            <primary_key/>
+            <readonly/>
+            <related_schema/>
+            <related_type>to_one</related_type>
+            <schema>
+                <fields>
+                    <molecule_chembl_id><blank/><default>No default provided.</default><help_text>Unicode string data. Ex: "Hello World"</help_text><nullable/><primary_key/><readonly/><type>string</type><unique/><verbose_name>molecule chembl id</verbose_name></molecule_chembl_id>
+                    <parent_chembl_id><blank>True</blank><default>No default provided.</default><help_text>Unicode string data. Ex: "Hello World"</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>parent chembl id</verbose_name></parent_chembl_id>
+                </fields>
+                <filtering>
+                    <molecule_chembl_id>1</molecule_chembl_id>
+                    <parent_chembl_id>1</parent_chembl_id>
+                </filtering>
+                <ordering>
+                    <value>molecule_chembl_id</value>
+                    <value>parent_chembl_id</value>
+                </ordering>
+            </schema>
+            <type>related</type>
+            <unique/>
+            <verbose_name>molecule hierarchy</verbose_name>
+        </molecule_hierarchy>
+        <molecule_properties>
+            <blank>True</blank>
+            <default>No default provided.</default>
+            <help_text>A single related resource. Can be either a URI or set of nested resource data.</help_text>
+            <nullable>True</nullable>
+            <primary_key/>
+            <readonly/>
+            <related_schema/>
+            <related_type>to_one</related_type>
+            <schema>
+                <fields>
+                    <alogp><blank/><default>No default provided.</default><help_text>Calculated ALogP</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>alogp</verbose_name></alogp>
+                    <aromatic_rings><blank/><default>No default provided.</default><help_text>Number of aromatic rings</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>aromatic rings</verbose_name></aromatic_rings>
+                    <cx_logd><blank/><default>No default provided.</default><help_text>The calculated octanol/water distribution coefficient at pH7.4 using ACDlabs v12.01</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>cx logd</verbose_name></cx_logd>
+                    <cx_logp><blank/><default>No default provided.</default><help_text>The calculated octanol/water partition coefficient using ACDlabs v12.01</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>cx logp</verbose_name></cx_logp>
+                    <cx_most_apka><blank/><default>No default provided.</default><help_text>The most acidic pKa calculated using ACDlabs v12.01</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>cx most apka</verbose_name></cx_most_apka>
+                    <cx_most_bpka><blank/><default>No default provided.</default><help_text>The most basic pKa calculated using ACDlabs v12.01</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>cx most bpka</verbose_name></cx_most_bpka>
+                    <full_molformula><blank/><default>No default provided.</default><help_text>Molecular formula for the full compound (including any salt)</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>full molformula</verbose_name></full_molformula>
+                    <full_mwt><blank/><default>No default provided.</default><help_text>Molecular weight of the full compound including any salts</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>full mwt</verbose_name></full_mwt>
+                    <hba><blank/><default>No default provided.</default><help_text>Number hydrogen bond acceptors</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>hba</verbose_name></hba>
+                    <hba_lipinski><blank/><default>No default provided.</default><help_text>Number of hydrogen bond acceptors calculated according to Lipinski's original rules (i.e., N + O count))</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>hba lipinski</verbose_name></hba_lipinski>
+                    <hbd><blank/><default>No default provided.</default><help_text>Number hydrogen bond donors</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>hbd</verbose_name></hbd>
+                    <hbd_lipinski><blank/><default>No default provided.</default><help_text>Number of hydrogen bond donors calculated according to Lipinski's original rules (i.e., NH + OH count)</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>hbd lipinski</verbose_name></hbd_lipinski>
+                    <heavy_atoms><blank/><default>No default provided.</default><help_text>Number of heavy (non-hydrogen) atoms</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>heavy atoms</verbose_name></heavy_atoms>
+                    <molecular_species><blank/><default>No default provided.</default><help_text>Indicates whether the compound is an acid/base/neutral</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>molecular species</verbose_name></molecular_species>
+                    <mw_freebase><blank/><default>No default provided.</default><help_text>Molecular weight of parent compound</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>mw freebase</verbose_name></mw_freebase>
+                    <mw_monoisotopic><blank/><default>No default provided.</default><help_text>Monoisotopic parent molecular weight</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>mw monoisotopic</verbose_name></mw_monoisotopic>
+                    <num_lipinski_ro5_violations><blank/><default>No default provided.</default><help_text>Number of violations of Lipinski's rule of five using HBA_LIPINSKI and HBD_LIPINSKI counts</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>num lipinski ro5 violations</verbose_name></num_lipinski_ro5_violations>
+                    <num_ro5_violations><blank/><default>No default provided.</default><help_text>Number of violations of Lipinski's rule-of-five, using HBA and HBD definitions</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>num ro5 violations</verbose_name></num_ro5_violations>
+                    <psa><blank/><default>No default provided.</default><help_text>Polar surface area</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>psa</verbose_name></psa>
+                    <qed_weighted><blank/><default>No default provided.</default><help_text>Weighted quantitative estimate of drug likeness (as defined by Bickerton et al., Nature Chem 2012)</help_text><nullable>True</nullable><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>qed weighted</verbose_name></qed_weighted>
+                    <ro3_pass><blank/><default>No default provided.</default><help_text>Indicates whether the compound passes the rule-of-three (mw &lt; 300, logP &lt; 3 etc)</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>ro3 pass</verbose_name></ro3_pass>
+                    <rtb><blank/><default>No default provided.</default><help_text>Number rotatable bonds</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>rtb</verbose_name></rtb>
+                </fields>
+                <filtering>
+                    <alogp><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></alogp>
+                    <aromatic_rings><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></aromatic_rings>
+                    <cx_logd><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></cx_logd>
+                    <cx_logp><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></cx_logp>
+                    <cx_most_apka><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></cx_most_apka>
+                    <cx_most_bpka><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></cx_most_bpka>
+                    <full_molformula><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></full_molformula>
+                    <full_mwt><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></full_mwt>
+                    <hba><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></hba>
+                    <hba_lipinski><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></hba_lipinski>
+                    <hbd><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></hbd>
+                    <hbd_lipinski><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></hbd_lipinski>
+                    <heavy_atoms><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></heavy_atoms>
+                    <med_chem_friendly><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></med_chem_friendly>
+                    <molecular_species><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></molecular_species>
+                    <mw_freebase><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></mw_freebase>
+                    <mw_monoisotopic><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></mw_monoisotopic>
+                    <num_lipinski_ro5_violations><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></num_lipinski_ro5_violations>
+                    <num_ro5_violations><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></num_ro5_violations>
+                    <psa><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></psa>
+                    <qed_weighted><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></qed_weighted>
+                    <ro3_pass><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></ro3_pass>
+                    <rtb><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></rtb>
+                </filtering>
+                <ordering>
+                    <value>cx_logd</value>
+                    <value>cx_logp</value>
+                    <value>cx_most_apka</value>
+                    <value>cx_most_bpka</value>
+                    <value>alogp</value>
+                    <value>aromatic_rings</value>
+                    <value>full_molformula</value>
+                    <value>full_mwt</value>
+                    <value>hba</value>
+                    <value>hbd</value>
+                    <value>heavy_atoms</value>
+                    <value>med_chem_friendly</value>
+                    <value>molecular_species</value>
+                    <value>mw_freebase</value>
+                    <value>mw_monoisotopic</value>
+                    <value>num_ro5_violations</value>
+                    <value>psa</value>
+                    <value>qed_weighted</value>
+                    <value>ro3_pass</value>
+                    <value>rtb</value>
+                    <value>hba_lipinski</value>
+                    <value>hbd_lipinski</value>
+                    <value>num_lipinski_ro5_violations</value>
+                </ordering>
+            </schema>
+            <type>related</type>
+            <unique/>
+            <verbose_name>molecule properties</verbose_name>
+        </molecule_properties>
+        <molecule_structures>
+            <blank>True</blank>
+            <default>No default provided.</default>
+            <help_text>A single related resource. Can be either a URI or set of nested resource data.</help_text>
+            <nullable>True</nullable><primary_key/><readonly/><related_schema/><related_type>to_one</related_type>
+            <schema>
+                <fields>
+                    <canonical_smiles><blank/><default>No default provided.</default><help_text>Canonical smiles, generated using pipeline pilot</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>canonical smiles</verbose_name></canonical_smiles>
+                    <molfile><blank/><default/><help_text>MDL Connection table representation of compound</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>molfile</verbose_name></molfile>
+                    <standard_inchi><blank/><default>No default provided.</default><help_text>IUPAC standard InChI for the compound</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique>True</unique><verbose_name>standard inchi</verbose_name></standard_inchi>
+                    <standard_inchi_key><blank/><default>No default provided.</default><help_text>IUPAC standard InChI key for the compound</help_text><nullable/><primary_key/><readonly/><type>string</type><unique/><verbose_name>standard inchi key</verbose_name></standard_inchi_key>
+                </fields>
+                <filtering>
+                    <canonical_smiles><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></canonical_smiles>
+                    <standard_inchi_key><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></standard_inchi_key>
+                </filtering>
+            </schema>
+            <type>related</type>
+            <unique/>
+            <verbose_name>molecule structures</verbose_name>
+        </molecule_structures>
+        <molecule_type><blank/><default>No default provided.</default><help_text>Type of molecule (Small molecule, Protein, Antibody, Oligosaccharide, Oligonucleotide, Cell, Unknown)</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>molecule type</verbose_name></molecule_type>
+        <natural_product><blank/><default>-1</default><help_text>Indicates whether the compound is natural product-derived (currently curated only for drugs)</help_text><nullable/><primary_key/><readonly/><type>integer</type><unique/><verbose_name>natural product</verbose_name></natural_product>
+        <oral><blank/><default/><help_text>Indicates whether the drug is known to be administered orally.</help_text><nullable/><primary_key/><readonly/><type>boolean</type><unique/><verbose_name>oral</verbose_name></oral>
+        <parenteral><blank/><default/><help_text>Indicates whether the drug is known to be administered parenterally</help_text><nullable/><primary_key/><readonly/><type>boolean</type><unique/><verbose_name>parenteral</verbose_name></parenteral>
+        <polymer_flag><blank/><default>No default provided.</default><help_text>Indicates whether a molecule is a small molecule polymer (e.g., polistyrex)</help_text><nullable>True</nullable><primary_key/><readonly/><type>boolean</type><unique/><verbose_name>polymer flag</verbose_name></polymer_flag>
+        <pref_name><blank/><default>No default provided.</default><help_text>Preferred name for the molecule</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>pref name</verbose_name></pref_name>
+        <prodrug><blank/><default>-1</default><help_text>Indicates that the molecule is a pro-drug (see molecule hierarchy for active component, where known)</help_text><nullable/><primary_key/><readonly/><type>integer</type><unique/><verbose_name>prodrug</verbose_name></prodrug>
+        <similarity><blank/><default>No default provided.</default><help_text>Fixed precision numeric data. Ex: 26.73</help_text><nullable/><primary_key/><readonly/><type>decimal</type><unique/><verbose_name>similarity</verbose_name></similarity>
+        <structure_type><blank/><default>MOL</default><help_text>Indications whether the molecule has a small molecule structure or a protein sequence (MOL indicates an entry in the compound_structures table, SEQ indications an entry in the protein_therapeutics table, NONE indicates an entry in neither table, e.g., structure unknown)</help_text><nullable/><primary_key/><readonly/><type>string</type><unique/><verbose_name>structure type</verbose_name></structure_type>
+        <therapeutic_flag><blank/><default/><help_text>Indicates that a drug has a therapeutic application (as opposed to e.g., an imaging agent, additive etc).</help_text><nullable/><primary_key/><readonly/><type>boolean</type><unique/><verbose_name>therapeutic flag</verbose_name></therapeutic_flag>
+        <topical><blank/><default/><help_text>Indicates whether the drug is known to be administered topically.</help_text><nullable/><primary_key/><readonly/><type>boolean</type><unique/><verbose_name>topical</verbose_name></topical>
+        <usan_stem><blank/><default>No default provided.</default><help_text>Where the compound has been assigned a USAN name, this indicates the stem, as described in the USAN_STEM table.</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>usan stem</verbose_name></usan_stem>
+        <usan_stem_definition><blank/><default>No default provided.</default><help_text>Definition of the USAN stem</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>usan stem definition</verbose_name></usan_stem_definition>
+        <usan_substem><blank/><default>No default provided.</default><help_text>Where the compound has been assigned a USAN name, this indicates the substem</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>usan substem</verbose_name></usan_substem>
+        <usan_year><blank/><default>No default provided.</default><help_text>The year in which the application for a USAN/INN name was made</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>usan year</verbose_name></usan_year>
+        <withdrawn_class><blank/><default>No default provided.</default><help_text>Unicode string data. Ex: "Hello World"</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>withdrawn class</verbose_name></withdrawn_class>
+        <withdrawn_country><blank/><default>No default provided.</default><help_text>List of countries/regions where the drug has been withdrawn</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>withdrawn country</verbose_name></withdrawn_country>
+        <withdrawn_flag><blank/><default/><help_text>Flag indicating whether the drug has been withdrawn in at least one country (not necessarily in the US)</help_text><nullable/><primary_key/><readonly/><type>boolean</type><unique/><verbose_name>withdrawn flag</verbose_name></withdrawn_flag>
+        <withdrawn_reason><blank/><default>No default provided.</default><help_text>Reasons for withdrawal (e.g., safety)</help_text><nullable>True</nullable><primary_key/><readonly/><type>string</type><unique/><verbose_name>withdrawn reason</verbose_name></withdrawn_reason>
+        <withdrawn_year><blank/><default>No default provided.</default><help_text>Year the drug was first withdrawn in any country</help_text><nullable>True</nullable><primary_key/><readonly/><type>integer</type><unique/><verbose_name>withdrawn year</verbose_name></withdrawn_year>
+    </fields>
+    <filtering>
+        <atc_classifications>2</atc_classifications><availability_type><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></availability_type><biotherapeutic>2</biotherapeutic>
+        <black_box_warning><value>exact</value><value>isnull</value></black_box_warning>
+        <chebi_par_id><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></chebi_par_id>
+        <chirality><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></chirality>
+        <cross_references>2</cross_references>
+        <dosed_ingredient><value>exact</value><value>isnull</value></dosed_ingredient>
+        <first_approval><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></first_approval>
+        <first_in_class><value>exact</value><value>isnull</value></first_in_class>
+        <helm_notation><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></helm_notation>
+        <indication_class><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></indication_class>
+        <inorganic_flag><value>exact</value><value>isnull</value></inorganic_flag>
+        <max_phase><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></max_phase>
+        <molecule_chembl_id>1</molecule_chembl_id>
+        <molecule_hierarchy>2</molecule_hierarchy>
+        <molecule_properties>2</molecule_properties>
+        <molecule_structures>2</molecule_structures>
+        <molecule_synonyms>2</molecule_synonyms>
+        <molecule_type><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></molecule_type>
+        <natural_product><value>exact</value><value>isnull</value></natural_product>
+        <oral><value>exact</value><value>isnull</value></oral>
+        <parenteral><value>exact</value><value>isnull</value></parenteral>
+        <polymer_flag><value>exact</value><value>isnull</value></polymer_flag>
+        <pref_name><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></pref_name>
+        <prodrug><value>exact</value><value>isnull</value></prodrug>
+        <structure_type><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></structure_type>
+        <therapeutic_flag><value>exact</value><value>isnull</value></therapeutic_flag>
+        <topical><value>exact</value><value>isnull</value></topical>
+        <usan_stem><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></usan_stem>
+        <usan_stem_definition><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></usan_stem_definition>
+        <usan_substem><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></usan_substem>
+        <usan_year><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></usan_year>
+        <withdrawn_class><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></withdrawn_class>
+        <withdrawn_country><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></withdrawn_country>
+        <withdrawn_flag><value>exact</value><value>isnull</value></withdrawn_flag>
+        <withdrawn_reason><value>exact</value><value>iexact</value><value>contains</value><value>icontains</value><value>istartswith</value><value>startswith</value><value>endswith</value><value>iendswith</value><value>search</value><value>regex</value><value>iregex</value><value>isnull</value><value>in</value></withdrawn_reason>
+        <withdrawn_year><value>exact</value><value>range</value><value>gt</value><value>gte</value><value>lt</value><value>lte</value><value>in</value><value>isnull</value></withdrawn_year>
+    </filtering>
+    <ordering>
+        <value>availability_type</value>
+        <value>biotherapeutic</value>
+        <value>black_box_warning</value>
+        <value>chebi_par_id</value>
+        <value>chirality</value>
+        <value>dosed_ingredient</value>
+        <value>first_approval</value>
+        <value>first_in_class</value>
+        <value>indication_class</value>
+        <value>inorganic_flag</value>
+        <value>helm_notation</value>
+        <value>max_phase</value>
+        <value>molecule_chembl_id</value>
+        <value>molecule_hierarchy</value>
+        <value>molecule_properties</value>
+        <value>molecule_structures</value>
+        <value>molecule_type</value>
+        <value>natural_product</value>
+        <value>oral</value>
+        <value>parenteral</value>
+        <value>polymer_flag</value>
+        <value>pref_name</value>
+        <value>prodrug</value>
+        <value>structure_type</value>
+        <value>therapeutic_flag</value>
+        <value>topical</value>
+        <value>usan_stem</value>
+        <value>usan_stem_definition</value>
+        <value>usan_substem</value>
+        <value>usan_year</value>
+        <value>withdrawn_flag</value>
+        <value>withdrawn_year</value>
+        <value>withdrawn_country</value>
+        <value>withdrawn_reason</value>
+        <value>withdrawn_class</value>
+    </ordering>
+</response>

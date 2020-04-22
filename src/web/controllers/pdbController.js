@@ -27,7 +27,9 @@ class PDBFactory {
   static LIGANDS_URL =
     "https://www.rcsb.org/pdb/rest/ligandInfo?structureId=<STRUCTUREID>";
 
-  static get RESOLUTION_THRESHOLD() { return 2; }
+  static get RESOLUTION_THRESHOLD() {
+    return 2;
+  }
 
   /**
    * Cast a XML file to a PDBStructure object.
@@ -47,7 +49,11 @@ class PDBFactory {
     let description = json.PDBdescription.PDB[0].$.title;
     let resolution = json.PDBdescription.PDB[0].$.resolution;
     // Create the object.
-    let structure = {structureId, description, resolution};
+    let structure = {
+      structureId,
+      description,
+      resolution
+    };
     return structure;
   }
 
@@ -65,7 +71,7 @@ class PDBFactory {
       ligandList.push(ligand.$.chemicalID);
     });
     // Return the object.
-    return(ligandList);
+    return (ligandList);
   }
 
 
@@ -89,7 +95,7 @@ class PDBFactory {
       let ligandXML = await ligandRes.text();
       let ligands = this.parseLigandInfo(ligandXML);
       let pdbStructure = new PDB.PDBStructure(structure.structureId, structure.description, structure.resolution, ligands);
-      return(pdbStructure);
+      return (pdbStructure);
     } catch (err) {
       console.log(err);
     }
@@ -111,20 +117,24 @@ class PDBFactory {
     });
     // Get ligand data.
     let ligand = json.smilesQueryResult.ligandInfo[0].ligand;
-    let chemicalID = ligand[0].$.chemicalID;
-    let molecularWeight = ligand[0].$.molecularWeight;
-    let chemicalName = ligand[0].chemicalName;
-    let formula = ligand[0].formula;
-    let smiles = ligand[0].smiles;
-    // Get structures list.
-    let structures = [];
-    await Promise.all(
-      ligand.map(async (element) => {
-        let structure = await this.fetchStructure(element.$.structureId);
-        structures.push(structure);
-    }));
+    let pdbLigand;
+    if (ligand) {
+      let chemicalID = ligand[0].$.chemicalID;
+      let molecularWeight = ligand[0].$.molecularWeight;
+      let chemicalName = ligand[0].chemicalName;
+      let formula = ligand[0].formula;
+      let smiles = ligand[0].smiles;
+      // Get structures list.
+      let structures = [];
+      await Promise.all(
+        ligand.map(async (element) => {
+          let structure = await this.fetchStructure(element.$.structureId);
+          structures.push(structure);
+        }));
+      pdbLigand = new PDB.PDBLigand(chemicalID, chemicalName, formula, smiles, molecularWeight, structures);
+    }
     // Create the object.
-    return(new PDB.PDBLigand(chemicalID, chemicalName, formula, smiles, molecularWeight, structures));
+    return (pdbLigand);
   }
 
 
@@ -142,7 +152,7 @@ class PDBFactory {
       const res = await fetch(url);
       if (!res.ok) return;
       let xml = await res.text();
-      return(await this.parsePDB(xml));
+      return (await this.parsePDB(xml));
     } catch (err) {
       console.log(err);
     }

@@ -14,13 +14,16 @@ class MoleculeController {
                 let chembl = ChemblController.fetch(smiles);
                 let pdb = await PDBController.searchLigandBySmiles(smiles);
                 let bindings = [];
-                await Promise.all(
-                    pdb.structuresList.map(async structure => {
-                        let binding = await BMOADController.fetch(structure);
-                        if (binding.length > 0) {
-                            bindings.push(binding);
-                        }
-                    }));
+                if (pdb) {
+                    await Promise.all(
+                        pdb.structuresList.map(async structure => {
+                            let binding = await BMOADController.fetch(structure);
+                            if (binding.length > 0) {
+                                bindings.push(binding);
+                            }
+                        }));
+
+                }
                 molecules.push({
                     smiles: smiles,
                     pubchem: await pubchem,

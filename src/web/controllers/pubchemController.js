@@ -58,6 +58,10 @@ class PubchemFactory {
             console.log(err);
         }
     }
+
+    static async getSimilarities(cid) {
+
+    }
 }
 
 module.exports = PubchemFactory;
