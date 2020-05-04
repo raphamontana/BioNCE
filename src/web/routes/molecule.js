@@ -38,4 +38,9 @@ router.post("/", async function (req, res) {
   }
 });
 
+router.get("/:smiles", async function (req, res) {
+  let smiles = req.params.smiles;
+  res.send('user ' + req.params.smiles);
+});
+
 module.exports = router;
