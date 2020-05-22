@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "description": "An intelligent digital system to discover new bioactive chemical entities.",
   "keywords": [
-    "bioactive", "chemical", "entities", "compounds", "proteins"
+    "bioactive",
+    "chemical",
+    "entities",
+    "compounds",
+    "proteins"
   ],
   "homepage": "bionce.now.sh",
   "bugs": "https://github.com/raphamontana/BioNCE/issues",
@@ -26,6 +30,7 @@
     "nprogress": "^0.2.0",
     "prop-types": "latest",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "urlencoded-body-parser": "^3.0.0"
   }
 }

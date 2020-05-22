@@ -1,39 +1,32 @@
-import { useRouter } from 'next/router';
+import parse from 'urlencoded-body-parser';
+
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Layout from '../components/Layout/Layout';
-import { useEffect } from 'react';
 
-const Smiles = ( {myvar} ) => {
-  const router = useRouter()
-  const { smiles } = router.query
-
-  useEffect(() => {
-    //window.history.pushState(null, null, "/smiles");
-  });
-
-  return (
+const Smiles = ({ smiles }) => {
+  return(
     <Layout>
       <Grid container spacing={3}>
         <Grid item xs={6}>
           <Paper>
-            <h1>Title</h1>
-            <p>SMILES: {myvar}</p>
+            <h1>SMILES: { smiles }</h1>
+            <p>Information</p>
           </Paper>
         </Grid>
       </Grid>
     </Layout>
-  )
-}
+  );
+};
 
 export async function getServerSideProps(context) {
-  const { query } = context.req;
-
-  return {
-    props: React.Component.getInitialProps ? await React.Component.getInitialProps(ctx): {
-        query
-    }
+  const { smiles } = await parse(context.req);
+  if (typeof smiles !== "undefined") {
+    return { props: { smiles } };
   }
-}
+  else {
+    return { props: { smiles: null } };
+  }
+};
 
 export default Smiles;

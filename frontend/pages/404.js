@@ -1,5 +1,4 @@
-// pages/404.js
-import Router from 'next/router'
+import Router from 'next/router';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,7 +8,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../components/Layout/Layout';
 
-export default function Custom404() {
+const Custom404 = () => {
   return(
     <Layout>
       <Container maxWidth="sm">
@@ -36,3 +35,5 @@ export default function Custom404() {
     </Layout>
   );
 }
+
+export default Custom404;

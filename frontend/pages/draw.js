@@ -147,10 +147,8 @@ class Draw extends React.Component {
                     Copy
                   </Button>
                   <form action="/smiles" method="post">
-                    <label htmlFor="fname">First name:</label>
-                    <input type="text" id="fname" name="fname" /><br /><br />
-                    <label htmlFor="lname">Last name:</label>
-                    <input type="text" id="lname" name="lname" /><br /><br />
+                    <label htmlFor="smiles">First name:</label>
+                    <input type="text" id="smiles" name="smiles" /><br /><br />
                     <input type="submit" value="Submit" />
                   </form>
                 </Box>
