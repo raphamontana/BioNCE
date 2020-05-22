@@ -1,203 +1,121 @@
-import Head from 'next/head'
+//import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Layout from '../components/Layout/Layout'
+import useStyles from '../components/Layout/style';
 
-const Home = () => (
-  <div className="container">
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+/*
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+}));
+*/
 
-    <main>
-      <h1 className="title">
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
+const Home = () => {
+  const classes = useStyles();
 
-      <p className="description">
-        Get started by editing <code>pages/index.js</code>
-      </p>
+  return(
+    <Layout>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper} alignitems={"center"} >
+            <p>Welcome to BioNCE, an Intelligent Digital System by <a href="http://nequimed.iqsc.usp.br/">NEQUIMED/IQSC/USP</a></p>
+            <p><img src="images/logo.svg" alt="logo" width="512" /></p>
+            <Typography component="h2" variant="h6" color="primary" gutterBottom>
+              From a New Chemical Entity to a Bioactive New Chemical Entity.
+            </Typography>
 
-      <div className="grid">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+            <div className="grid">
+              <a href="/draw" className="card">
+                <h3>Search &rarr;</h3>
+                <p>Draw a structure and search the database.</p>
+              </a>
+              <a href="/molecule" className="card">
+                <h3>Create a database &rarr;</h3>
+                <p>Select molecules and features to download file.</p>
+              </a>
 
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
+              <a href="/ml" className="card">
+                <h3>Run Machine Learning &rarr;</h3>
+                <p>Discover Bioactive New Chemical Entities using Machine Learning.</p>
+              </a>
 
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
+              <a href="/examples" className="card">
+                <h3>Documentation &rarr;</h3>
+                <p>Find information about BioNCE features.</p>
+              </a>
+            </div>
+            <style jsx>{`
+            .grid {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-wrap: wrap;
+              max-width: 800px;
+              margin-top: 3rem;
+            }
+            .card {
+              margin: 1rem;
+              flex-basis: 45%;
+              padding: 1.5rem;
+              text-align: left;
+              color: inherit;
+              text-decoration: none;
+              border: 1px solid #eaeaea;
+              border-radius: 10px;
+              transition: color 0.15s ease, border-color 0.15s ease;
+            }
+            .card:hover,
+            .card:focus,
+            .card:active {
+              color: #0070f3;
+              border-color: #0070f3;
+            }
+            .card h3 {
+              margin: 0 0 1rem 0;
+              font-size: 1.5rem;
+            }
+            .card p {
+              margin: 0;
+              font-size: 1.25rem;
+              line-height: 1.5;
+            }
+            @media (max-width: 600px) {
+              .grid {
+                width: 100%;
+                flex-direction: column;
+              }
+            }
+            `}</style>
 
-        <a
-          href="https://vercel.com/new?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          className="card"
-        >
-          <h3>Deploy &rarr;</h3>
-          <p>
-            Instantly deploy your Next.js site to a public URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-
-    <footer>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/vercel.svg" alt="Vercel Logo" />
-      </a>
-    </footer>
-
-    <style jsx>{`
-      .container {
-        min-height: 100vh;
-        padding: 0 0.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      main {
-        padding: 5rem 0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      footer {
-        width: 100%;
-        height: 100px;
-        border-top: 1px solid #eaeaea;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      footer img {
-        margin-left: 0.5rem;
-      }
-
-      footer a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .title a {
-        color: #0070f3;
-        text-decoration: none;
-      }
-
-      .title a:hover,
-      .title a:focus,
-      .title a:active {
-        text-decoration: underline;
-      }
-
-      .title {
-        margin: 0;
-        line-height: 1.15;
-        font-size: 4rem;
-      }
-
-      .title,
-      .description {
-        text-align: center;
-      }
-
-      .description {
-        line-height: 1.5;
-        font-size: 1.5rem;
-      }
-
-      code {
-        background: #fafafa;
-        border-radius: 5px;
-        padding: 0.75rem;
-        font-size: 1.1rem;
-        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-      }
-
-      .grid {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-
-        max-width: 800px;
-        margin-top: 3rem;
-      }
-
-      .card {
-        margin: 1rem;
-        flex-basis: 45%;
-        padding: 1.5rem;
-        text-align: left;
-        color: inherit;
-        text-decoration: none;
-        border: 1px solid #eaeaea;
-        border-radius: 10px;
-        transition: color 0.15s ease, border-color 0.15s ease;
-      }
-
-      .card:hover,
-      .card:focus,
-      .card:active {
-        color: #0070f3;
-        border-color: #0070f3;
-      }
-
-      .card h3 {
-        margin: 0 0 1rem 0;
-        font-size: 1.5rem;
-      }
-
-      .card p {
-        margin: 0;
-        font-size: 1.25rem;
-        line-height: 1.5;
-      }
-
-      @media (max-width: 600px) {
-        .grid {
-          width: 100%;
-          flex-direction: column;
-        }
-      }
-    `}</style>
-
-    <style jsx global>{`
-      html,
-      body {
-        padding: 0;
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-    `}</style>
-  </div>
-)
+            <h4>Links interessantes:</h4>
+            <p>
+              <a href="http://partridgejiang.github.io/Kekule.js/">Kekule.js</a><br />
+              <a href="http://aquaria.ws/">Aquaria.ws</a><br />
+              <a href="http://molview.org/">MolView</a><br />
+              <a href="http://avogadro.cc/">Avogadro</a><br />
+              <a href="http://openbabel.org/">OpenBabel</a><br />
+              <a href="https://www.molsoft.com/moledit.html">Moledit</a><br />
+              <a href="http://www.sciencegeek.net/Chemistry/chemware/chemware.shtml">Chemware</a><br />
+              <a href="http://www.openmolecules.org/index.html">OpenMolecules</a><br />
+              <a href="http://www.cheminfo.org/Chemistry/Cheminformatics/OpenChemLib_js/index.html">Cheminfo</a><br />
+              <a href="http://www.cheminfo.org/ML/Regression/index.html">Cheminfo: Regression</a><br />
+              <a href="https://www.ucd.ie/chem/chemint/index.html">Chemically intelligent online tutorials</a><br />
+              2D chemical structure image recognition<br />
+              <a href="https://lifescience.opensource.epam.com/imago/index.html">Imago</a><br />
+              <a href="https://cactus.nci.nih.gov/cgi-bin/osra/index.cgi">OSRA</a>
+            </p>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Layout>
+  );
+}
 
 export default Home

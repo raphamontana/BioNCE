@@ -1,15 +1,31 @@
 {
-  "name": "nextjs",
+  "name": "bionce",
   "version": "0.1.0",
+  "description": "An intelligent digital system to discover new bioactive chemical entities.",
+  "keywords": [
+    "bioactive", "chemical", "entities", "compounds", "proteins"
+  ],
+  "homepage": "bionce.now.sh",
+  "bugs": "https://github.com/raphamontana/BioNCE/issues",
+  "license": "GPL-3.0-or-later",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raphamontana/BioNCE.git"
+  },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "next": "^9.3.3",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "@material-ui/core": "^4.9.13",
+    "@material-ui/icons": "^4.9.1",
+    "clsx": "latest",
+    "next": "^9.3.6",
+    "nprogress": "^0.2.0",
+    "prop-types": "latest",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

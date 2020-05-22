@@ -128,3 +128,10 @@ dmypy.json
 
 # Dependency directories
 src/web/node_modules/
+frontend/public/vendor/
+
+src/web/public/images/faces/
+
+src/web/public/images/dashboard/
+
+src/web/public/images/auth/
