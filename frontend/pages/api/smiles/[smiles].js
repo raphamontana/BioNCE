@@ -1,8 +1,9 @@
-export default (req, res) => {
-  const {
-    query: { smiles },
-  } = req;
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify({ mol: smiles }));
+import MoleculeController from "../../../components/molecule/controllers/moleculeController";
+
+export default async (req, res) => {
+  const { query: { smiles } } = req;
+
+  let molecule = await MoleculeController.searchBySmiles(smiles);
+
+  res.status(200).json(molecule);
 }

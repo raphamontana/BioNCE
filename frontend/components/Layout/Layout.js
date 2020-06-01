@@ -1,9 +1,8 @@
-// material-ui/docs/src/pages/getting-started/templates/dashboard/Dashboard.js
 import AppBar from './AppBar';
-import Container from '@material-ui/core/Container';
-import Copyright from './Copyright';
 import Sidebar from './Sidebar';
 import useStyles from './style';
+import Copyright from './Copyright';
+import Container from '@material-ui/core/Container';
 
 export default function Layout( { children } ) {
   const classes = useStyles();

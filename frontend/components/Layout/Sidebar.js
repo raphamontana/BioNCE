@@ -16,7 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MuiLink from '@material-ui/core/Link';
 import SearchIcon from '@material-ui/icons/Search';
 import TimelineIcon from '@material-ui/icons/Timeline';
-import NextLink from '../Link';
+import NextLink from './Link';
 import useStyles from './style';
 
 export default function appbar() {
@@ -41,7 +41,6 @@ export default function appbar() {
       <div className={classes.toolbarIcon} />
       <Divider />
       <List>
-      <NextLink href="/">
         <ListItem button>
           <ListItemIcon>
             <IconButton edge="start"
@@ -53,41 +52,40 @@ export default function appbar() {
             </IconButton>
           </ListItemIcon>
         </ListItem>
-      </NextLink>
-      <NextLink href="/">
+        <NextLink href="/">
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </NextLink>
+        <NextLink href="/draw">
+          <ListItem button>
+            <ListItemIcon>
+              <SearchIcon />
+            </ListItemIcon>
+            <ListItemText primary="Search" />
+          </ListItem>
+        </NextLink>
         <ListItem button>
           <ListItemIcon>
-            <HomeIcon />
+            <TimelineIcon />
           </ListItemIcon>
-          <ListItemText primary="Home" />
+          <ListItemText primary="Molecule" />
         </ListItem>
-      </NextLink>
-      <NextLink href="/draw">
         <ListItem button>
           <ListItemIcon>
-            <SearchIcon />
+            <LocalHospitalIcon />
           </ListItemIcon>
-          <ListItemText primary="Search" />
+          <ListItemText primary="Diceases" />
         </ListItem>
-      </NextLink>
-      <ListItem button>
-        <ListItemIcon>
-          <TimelineIcon />
-        </ListItemIcon>
-        <ListItemText primary="Molecule" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <LocalHospitalIcon />
-        </ListItemIcon>
-        <ListItemText primary="Diceases" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <LibraryBooksIcon />
-        </ListItemIcon>
-        <ListItemText primary="Documentation" />
-      </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <LibraryBooksIcon />
+          </ListItemIcon>
+          <ListItemText primary="Documentation" />
+        </ListItem>
       </List>
       <Divider />
       <List>

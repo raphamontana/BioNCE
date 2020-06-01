@@ -25,12 +25,18 @@
   "dependencies": {
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
-    "clsx": "latest",
+    "clsx": "^1.1.0",
+    "jsme": "^2017.2.26",
     "next": "^9.3.6",
+    "ngl": "^0.10.4",
     "nprogress": "^0.2.0",
-    "prop-types": "latest",
+    "papaparse": "^5.2.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "urlencoded-body-parser": "^3.0.0"
+    "swr": "^0.2.2",
+    "urlencoded-body-parser": "^3.0.0",
+    "viztein": "^0.1.8",
+    "xml2js": "^0.4.23"
   }
 }

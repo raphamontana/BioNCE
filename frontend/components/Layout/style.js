@@ -79,6 +79,30 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  textfield: {
+    display: 'flex',
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+  textarea: {
+    flexDirection: 'column',
+    height: '436px',
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+  center: {
+    alignItems: 'center',
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  input: {
+    display: 'none',
+  },
+  jsme: {
+    minWidth: '369px',
+    marginBottom: theme.spacing(3),
+  },
 }));
 
 export default useStyles;

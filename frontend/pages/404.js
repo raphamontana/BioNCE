@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/layout/Layout';
 
 const Custom404 = () => {
   return(

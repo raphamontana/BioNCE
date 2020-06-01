@@ -1,5 +1,4 @@
 // material-ui/examples/nextjs/pages/_app.js
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Router from 'next/router';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -14,9 +13,7 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-export default function MyApp(props) {
-  const { Component, pageProps } = props;
-
+export default function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -38,8 +35,3 @@ export default function MyApp(props) {
     </React.Fragment>
   );
 }
-
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.object.isRequired,
-};
