@@ -1,19 +1,14 @@
 import { useState } from 'react';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-
-import AddIcon from '@material-ui/icons/Add';
-import ClearIcon from '@material-ui/icons/Clear';
-import SearchIcon from '@material-ui/icons/Search';
-import UploadIcon from '@material-ui/icons/CloudUpload';
-
+import { Box, Button, Grid, Paper, TextField } from '@material-ui/core';
+import { Add as AddIcon,
+         Clear as ClearIcon,
+         Search as SearchIcon,
+         CloudUpload as UploadIcon } from '@material-ui/icons';
 import Layout from '../components/layout/Layout';
 import useStyles from '../components/layout/style';
 import LoadDrugButton from '../components/draw/LoadDrugButton';
 import JSMEComponent, { JSMEAcknowledgement } from '../components/draw/JSMEComponent';
+import StructuresUploadButton from '../components/draw/StructuresUploadButton';
 
 const Draw = () => {
   const classes = useStyles();
@@ -44,57 +39,42 @@ const Draw = () => {
         <Grid item xs>
           <Paper className={`${classes.paper} ${classes.jsme}`} >
             Draw smiles
-            <JSMEComponent callBack={e => setSmiles( e )} />
+            <JSMEComponent callback={e => setSmiles( e )} />
             <form action="/molecules" method="POST">
-              <Box component="div" display="inline">
+              <Box display="inline" alignItems="center">
                 <TextField
                   id="structure"
+                  name="structure"
                   label="SMILES"
                   variant="outlined"
+                  className={classes.textfield}
                   value={smiles}
                   onChange={e => setSmiles( e.target.value )}
-                  className={classes.textfield}
                 />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    startIcon={<AddIcon />}
-                    onClick={handleCopy}
-                    className={classes.button}
-                  >
-                    Copy
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    startIcon={<SearchIcon />}
-                    className={classes.button}
-                  >
-                    Search
-                  </Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  className={classes.button}
+                  startIcon={<AddIcon />}
+                  onClick={handleCopy}
+                >
+                  Copy
+                </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  startIcon={<SearchIcon />}
+                  className={classes.button}
+                >
+                  Search
+                </Button>
               </Box>
             </form>
           </Paper>
 
           <Paper className={classes.paper} style={{align: 'center'}}>
-            <input
-              accept=".csv"
-              className={classes.input}
-              id="contained-button-file"
-              multiple
-              type="file"
-            />
-            <label htmlFor="contained-button-file">
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                startIcon={<UploadIcon />}
-              >
-                Upload
-              </Button>
-            </label>
+            <StructuresUploadButton />
           </Paper>
         </Grid>
 
@@ -103,6 +83,7 @@ const Draw = () => {
             <form action="/molecules" method="POST">
               <TextField
                 id="structuresList"
+                name="structuresList"
                 variant="outlined"
                 label="Enter a list of SMILES here:"
                 value={smilesList}
@@ -111,7 +92,7 @@ const Draw = () => {
                 rows={18}
                 className={classes.textfield}
               />
-              <Box component="div" display="inline">
+              <Box display="inline">
                 <Button
                   variant="outlined"
                   color="secondary"

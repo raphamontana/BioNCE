@@ -16,7 +16,7 @@ const drugs = {
   Sildenafil: "CCCc1nn(C)c2c(=O)[nH]c(-c3cc(S(=O)(=O)N4CCN(C)CC4)ccc3OCC)nc12",
 };
 
-export default function LoadDrugButton(props) {
+const LoadDrugButton = (props) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const options = Object.keys(drugs);
@@ -71,3 +71,5 @@ export default function LoadDrugButton(props) {
     </>
   );
 }
+
+export default LoadDrugButton;

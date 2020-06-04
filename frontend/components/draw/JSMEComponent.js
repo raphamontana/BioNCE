@@ -29,14 +29,14 @@ export function JSMEAcknowledgement() {
 }
 
 // JSME Molecule Editor
-function JSMEComponent(props) {
+function JSMEComponent({ callback }) {
 
   useEffect(() => {
     function jsmeOnLoad(status) {
       const jsmeApplet = new JSApplet.JSME("jsme_container", "100%", "100%");
       jsmeApplet.setCallBack(
         "AfterStructureModified",
-        () => props.callBack(jsmeApplet.smiles())
+        () => callback(jsmeApplet.smiles())
       );
     }
     window.jsmeOnLoad = jsmeOnLoad;

@@ -1,28 +1,38 @@
 import useSWR from 'swr';
 import NGL from './NGLComponent';
+import PDB from './PDBCard';
+
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const fetcher = url => fetch(url).then(r => r.json())
 
-const MoleculeComponent = (props) => {
-  const { data, error } = useSWR(`/api/smiles/${props.smiles}`, fetcher, { refreshInterval: 0 });
+const MoleculeComponent = ({ id, smiles }) => {
+  const { data, error } = useSWR(`/api/smiles/${smiles}`, fetcher, { refreshInterval: 0 });
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
 
-  let { pubchem } = data;
+  let { chembl, pubchem } = data;
   console.log(data.bindings);
 
   return(
-    <>
-      <h2>Pubchem</h2>
-      <p>CID: { pubchem.cid }</p>
-      <p>SMILES: { data.smiles }</p>
+    <ExpansionPanel defaultExpanded>
+      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} id={ "ep" + id } >
+        <p>SMILES: { smiles }</p>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails>
+        <PDB data={pubchem} />
+        <p><img src="https://www.ebi.ac.uk/chembl/api/data/image/${ chembl.id }.svg" height="200px" /></p>
 
-      <h2>Binding data</h2>
-
-      <hr/>
-
-
-    </>
+        <h2>Binding data</h2>
+        <NGL
+          data={{ filename: "https://files.rcsb.org/download/4hhb.pdb" }}
+          viewportId={ "viewport-" + id }
+        />
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
   );
 };
 

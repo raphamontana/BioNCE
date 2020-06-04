@@ -98,7 +98,9 @@ const Home = () => {
               <a href="https://www.ucd.ie/chem/chemint/index.html">Chemically intelligent online tutorials</a><br />
               2D chemical structure image recognition<br />
               <a href="https://lifescience.opensource.epam.com/imago/index.html">Imago</a><br />
-              <a href="https://cactus.nci.nih.gov/cgi-bin/osra/index.cgi">OSRA</a>
+              <a href="https://cactus.nci.nih.gov/cgi-bin/osra/index.cgi">OSRA</a><br />
+              pubchem Related compounds download 7. bioactivity<br />
+              chembl similarity and substructure download
             </p>
           </Paper>
         </Grid>
