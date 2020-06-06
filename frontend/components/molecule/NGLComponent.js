@@ -12,7 +12,7 @@ function NGLComponent(props) {
   },[]);
 
   return(
-    <div id={ props.viewportId } style={{ width: "400px", height:"300px" }} />
+    <div id={ props.viewportId } style={{ width: "345px", height:"300px" }} />
   );
 }
 

@@ -38,6 +38,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-html-parser": "^2.0.2",
+    "react-image": "^4.0.1",
+    "react-simple-img": "^2.3.9",
     "swr": "^0.2.2",
     "urlencoded-body-parser": "^3.0.0",
     "viztein": "^0.1.8",

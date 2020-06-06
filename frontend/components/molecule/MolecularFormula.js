@@ -10,8 +10,8 @@ const MolecularFormula = ({ formula }) => {
   return(
     <Grid container justify="space-between">
       <Grid item>
-        <Tooltip title="Molecular Formula">
-          <span>Molecular Formula:</span>
+        <Tooltip title="Molecular Formula" enterDelay={500}>
+          <b>Molecular Formula:</b>
         </Tooltip>
       </Grid>
       <Grid item>

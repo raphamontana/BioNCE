@@ -1,87 +1,122 @@
-import Image from 'material-ui-image'
-
+import { useState } from 'react';
+import { SimpleImg } from 'react-simple-img';
 import { makeStyles } from '@material-ui/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, FormControl,
+         IconButton, InputLabel, MenuItem , Select, Tooltip } from '@material-ui/core';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import LinkIcon from '@material-ui/icons/Link';
-
+import Attribute from './Attribute';
 import MolecularFormula from './MolecularFormula';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   card: {
+    minWidth: 300,
     maxWidth: 345,
-  }
+    margin: theme.spacing(0.5),
+  },
+  formControl: {
+    marginTop: theme.spacing(2),
+    minWidth: 120,
+    width: "100%"
+  },
 }));
 
-const Attribute = ({ name, value }) => {
+const PDBStructure = ({ structure }) => {
+  const classes = useStyles();
+  const [ligand, setLigand] = useState(structure.ligands[0]);
+
   return(
-    <Grid container justify="space-between">
-      <Grid item>
-        <Tooltip title={ name }>
-          <span>{ name }:</span>
-        </Tooltip>
-      </Grid>
-      <Grid item>
-        { value }
-      </Grid>
-    </Grid>
+    <>
+      <p><b>Structure:</b> <a href={`https://www.rcsb.org/structure/${structure.id}`}>{structure.id}</a></p>
+
+      <p><b>Description:</b> {structure.description}</p>
+
+      <p><b>DOI:</b>
+        <IconButton aria-label="" href={`http://doi.org/10.2210/pdb${structure.id}/pdb`}>
+          <LinkIcon />
+        </IconButton>
+      </p>
+
+      <p><b>Download:</b> {structure.id}.pdb
+        <IconButton aria-label="" href={`https://files.rcsb.org/download/${structure.id}.pdb`}>
+          <GetAppIcon />
+        </IconButton>
+      </p>
+
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="ligands-label">Ligands</InputLabel>
+        <Select
+          labelId="ligands-label"
+          value={ligand}
+          onChange={(e) => setLigand(e.target.value)}
+          label="Ligands"
+        >
+          {structure.ligands.map((option, index) => (
+            <MenuItem key={index} value={option} >{option}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <Button
+        size="small"
+        color="primary"
+        href={`https://www.rcsb.org/3d-view/${structure.id}?preset=ligandInteraction&sele=${ligand}`}
+      >
+        3D interaction
+      </Button>
+    </>
   );
 }
 
 const PDBCard = ({ data }) => {
   const classes = useStyles();
+  const [structureIndex, setStructureIndex] = useState(0);
+
   return(
     <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar variant="rounded" alt="PubChem icon" src="https://pubchem.ncbi.nlm.nih.gov/pcfe/favicon/favicon.ico" />
-        }
-        action={
-          <IconButton aria-label="PubChem link"
-            href={ "https://pubchem.ncbi.nlm.nih.gov/compound/" + data.cid }
+          <a
+            aria-label="PDB link"
+            href={ `https://www.rcsb.org/ligand/${data.id}` }
             target="_blank"
           >
+            <Avatar variant="rounded" alt="PDB icon" src="http://www.rcsb.org/favicon.ico" />
+          </a>
+        }
+        action={
+          <IconButton aria-label="PDB link">
             <LinkIcon />
           </IconButton>
         }
-        title={ `Compound CID: ${data.cid}` }
-        subheader="PubChem"
+        title={ `Ligand ${data.id}` }
+        subheader="Protein Data Bank"
       />
       <CardContent>
-        <Image style={{ width:'50%', height:'50%' }} width='100px' height='100px' alt="Compound structure"  src={`https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?cid=${data.cid}`} />
-        <p align="center">
-
-        </p>
+        <div align="center">
+          <SimpleImg
+            src={`https://cdn.rcsb.org/images/ccd/unlabeled/${data.id[0]}/${data.id}.svg`}
+            alt="Compound structure"
+            height={100}
+          />
+        </div>
         <Attribute name="Name" value={ data.name } />
-        <MolecularFormula formula={ data.formula } />
-        <Attribute name="Molecular Weight" value={ `${parseFloat(data.mass).toFixed(2)}g/mol` } />
-        <Attribute name="LogP" value={ data.logp } />
-        <Attribute name="Heavy atoms" value={ data.heavy_atoms } />
-        <Attribute name="Atom chiral" value={ data.atom_chiral } />
-        <Attribute name="Tautomers" value={ data.tautomers } />
-        <Attribute name="Hydrogen Bond Acceptor" value={ data.hydrogen_bond_acceptor } />
-        <Attribute name="Hydrogen Bond Donor" value={ data.hydrogen_bond_donor } />
-        <Attribute name="Rotatable Bond" value={ data.rotatable_bond } />
-        <Attribute name="Polar surface area" value={ data.polar_surface_area } />
-        <CardActions>
-          <Tooltip title="Fingerprint Tanimoto-based 2-dimensional similarity search.">
-            <Button size="small" color="primary">
-              Similar Structures Search
-            </Button>
-          </Tooltip>
-          <Tooltip title="Standard substructure search, finds structures in the database that contain the input structure as a part.">
-            <Button size="small" color="primary">
-              Substructure Search
-            </Button>
-          </Tooltip>
-        </CardActions>
+        <Attribute name="Molecular Formula" value={ data.formula } />
+        <Attribute name="Molecular Weight" value={ `${parseFloat(data.weight).toFixed(2)}` } />
+
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="structures-label">Structures</InputLabel>
+          <Select
+            labelId="structures-label"
+            value={structureIndex}
+            onChange={(e) => setStructureIndex(e.target.value)}
+            label="Structures"
+          >
+            {data.structures.map((option, index) => (
+              <MenuItem key={index} value={index} >{option.id}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <PDBStructure structure={data.structures[structureIndex]} />
       </CardContent>
     </Card>
   );
