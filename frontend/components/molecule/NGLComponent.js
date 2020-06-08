@@ -1,19 +1,20 @@
 import { useEffect } from 'react';
 
-function NGLComponent(props) {
+function NGLComponent({ viewportId, file }) {
 
   useEffect(() => {
     const loadNGL = async (viewportId) => {
       const NGL = await import('ngl');
       const stage = new NGL.Stage(viewportId);
-      stage.loadFile("https://files.rcsb.org/download/4hhb.pdb", {defaultRepresentation: true});
+      stage.loadFile(file, {defaultRepresentation: true});
     };
-    loadNGL(props.viewportId);
+    loadNGL(viewportId);
   },[]);
 
   return(
-    <div id={ props.viewportId } style={{ width: "345px", height:"300px" }} />
+    <div id={ viewportId } style={{ width: "100%", height:"250px" }} />
   );
 }
 
 export default NGLComponent;
+//https://files.rcsb.org/download/4hhb.pdb

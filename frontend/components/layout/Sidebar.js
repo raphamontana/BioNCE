@@ -78,14 +78,16 @@ export default function appbar() {
           <ListItemIcon>
             <LocalHospitalIcon />
           </ListItemIcon>
-          <ListItemText primary="Diceases" />
+          <ListItemText primary="Diseases" />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LibraryBooksIcon />
-          </ListItemIcon>
-          <ListItemText primary="Documentation" />
-        </ListItem>
+        <NextLink href="/documentation">
+          <ListItem button>
+            <ListItemIcon>
+              <LibraryBooksIcon />
+            </ListItemIcon>
+            <ListItemText primary="Documentation" />
+          </ListItem>
+        </NextLink>
       </List>
       <Divider />
       <List>

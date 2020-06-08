@@ -3,6 +3,19 @@ import ChemblController from "./chemblController";
 import PDBController from "./pdbController";
 import PubchemController from "./pubchemController";
 
+function compare(a, b) {
+  const bindingA = a[0].proteinID.toUpperCase();
+  const bindingB = b[0].proteinID.toUpperCase();
+
+  let comparison = 0;
+  if (bindingA > bindingB) {
+    comparison = 1;
+  } else if (bindingA < bindingB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
 class MoleculeController {
 
   static async searchBySmiles(smiles) {
@@ -23,6 +36,7 @@ class MoleculeController {
           }
         })
       );
+      bindings.sort(compare);
     }
     let molecule = {
       smiles: smiles,

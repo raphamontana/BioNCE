@@ -1,3 +1,4 @@
+import { SimpleImg } from 'react-simple-img';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -12,17 +13,24 @@ const Home = () => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={`${classes.paper} ${classes.center}`} >
-            <Typography component="p">
+            <SimpleImg
+              src="images/logo.svg"
+              alt="logo"
+              height="114px"
+            />
+            <Typography variant="h4">
               Contact Us
-              We would love to hear from you!
-              Have comments? Suggestions? Corrections?
-              Send us an email at BindingMOAD@UMich.edu
             </Typography>
-            <p><img src="images/logo.svg" alt="logo" width="512" /></p>
+            <Typography variant="body2">
+              We would love to hear from you!<br />
+              Have comments, suggestions or corrections?<br />
+              Send us an email at <a href="mailto:bionce@nequimed.usp.br">bionce@nequimed.usp.br</a>
+            </Typography>
+            <Typography variant="h6">
+              Feedback Form
+            </Typography>
             <form>
               <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                Feedback Form
-
                 Name
                 First Name
                 Last Name
@@ -31,9 +39,9 @@ const Home = () => {
                 Yes, I found what I needed.
                 No, I did not find what I needed.
                 What were you looking for?
-                Optional Survey?
-                Yes No
 
+                Optional Survey
+                Yes No
                 Is the website easy to use?
                 Yes
                 No
@@ -50,7 +58,6 @@ const Home = () => {
                 Yes
                 No
                 Suggestions to help us make it better.
-
               </Typography>
               <button type="submit">Submit</button>
             </form>

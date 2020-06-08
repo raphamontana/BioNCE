@@ -15,7 +15,7 @@ import Attribute from './Attribute';
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    minWidth: 300,
+    minWidth: 290,
     maxWidth: 345,
     margin: theme.spacing(0.5),
   }

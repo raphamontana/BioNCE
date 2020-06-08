@@ -8,15 +8,17 @@ import LinkIcon from '@material-ui/icons/Link';
 import Attribute from './Attribute';
 import MolecularFormula from './MolecularFormula';
 
+import NGL from './NGLComponent';
+
 const useStyles = makeStyles((theme) => ({
   card: {
-    minWidth: 300,
+    minWidth: 290,
     maxWidth: 345,
     margin: theme.spacing(0.5),
   },
   formControl: {
     marginTop: theme.spacing(2),
-    minWidth: 120,
+    marginBottom: theme.spacing(2),
     width: "100%"
   },
 }));
@@ -27,22 +29,22 @@ const PDBStructure = ({ structure }) => {
 
   return(
     <>
-      <p><b>Structure:</b> <a href={`https://www.rcsb.org/structure/${structure.id}`}>{structure.id}</a></p>
-
+      <NGL
+        file={ `https://files.rcsb.org/download/${ structure.id }.pdb` }
+        viewportId={ "viewport-" + structure.id }
+      />
+      <p><b>Structure:</b> <a href={`https://www.rcsb.org/structure/${structure.id}`} target="_blank">{structure.id}</a></p>
       <p><b>Description:</b> {structure.description}</p>
-
-      <p><b>DOI:</b>
-        <IconButton aria-label="" href={`http://doi.org/10.2210/pdb${structure.id}/pdb`}>
+      <p><b>Primary publication:</b>{' '}
+        <a aria-label="Link to DOI" href={`http://doi.org/10.2210/pdb${structure.id}/pdb`} target="_blank">
           <LinkIcon />
-        </IconButton>
+        </a>
+        <br />
+        <b>Download:</b>{' '}
+        <a aria-label="Link to download" href={`https://files.rcsb.org/download/${structure.id}.pdb`}>
+          {structure.id}.pdb
+        </a>
       </p>
-
-      <p><b>Download:</b> {structure.id}.pdb
-        <IconButton aria-label="" href={`https://files.rcsb.org/download/${structure.id}.pdb`}>
-          <GetAppIcon />
-        </IconButton>
-      </p>
-
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="ligands-label">Ligands</InputLabel>
         <Select
@@ -84,8 +86,11 @@ const PDBCard = ({ data }) => {
           </a>
         }
         action={
-          <IconButton aria-label="PDB link">
-            <LinkIcon />
+          <IconButton
+            aria-label="Download SDF"
+            href={`https://files.rcsb.org/ligands/view/${data.id}_model.sdf`}
+          >
+            <GetAppIcon />
           </IconButton>
         }
         title={ `Ligand ${data.id}` }

@@ -16,6 +16,20 @@ const PDB = require("../models/pdb");
 // https://www.npmjs.com/package/pdbmine
 
 
+function compare(a, b) {
+  const structureA = a.id.toUpperCase();
+  const structureB = b.id.toUpperCase();
+
+  let comparison = 0;
+  if (structureA > structureB) {
+    comparison = 1;
+  } else if (structureA < structureB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
+
 /**
  * @class Chemical Structure searches with SMILES strings.
  */
@@ -130,7 +144,9 @@ class PDBFactory {
         ligand.map(async (element) => {
           let structure = await this.fetchStructure(element.$.structureId);
           structures.push(structure);
-        }));
+        })
+      );
+      structures.sort(compare);
       pdbLigand = new PDB.PDBLigand(chemicalID, chemicalName, formula, smiles, molecularWeight, structures);
     }
     // Create the object.

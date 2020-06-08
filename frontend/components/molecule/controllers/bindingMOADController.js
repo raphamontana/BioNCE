@@ -1,6 +1,19 @@
 const fetch = require('node-fetch');
 const Papa = require('papaparse');
-//const Pubchem = require('../models/pubchem');
+
+function compare(a, b) {
+  const chainA = a.chain.toUpperCase();
+  const chainB = b.chain.toUpperCase();
+
+  let comparison = 0;
+  if (chainA > chainB) {
+    comparison = 1;
+  } else if (chainA < chainB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
 
 // https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest-tutorial
 class BindingMOADController {
@@ -46,7 +59,7 @@ class BindingMOADController {
             );
         }
       });
-      return(bindings);
+      return(bindings.sort(compare));
     } catch (err) {
       console.log(err);
     }
