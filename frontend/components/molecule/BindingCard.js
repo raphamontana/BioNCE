@@ -1,11 +1,8 @@
 import ReactHtmlParser from 'react-html-parser';
 import { makeStyles } from '@material-ui/styles';
-import { Avatar, Card, CardContent, CardHeader, FormControl,
-         IconButton, InputLabel, MenuItem , Select, Tooltip } from '@material-ui/core';
+import { Avatar, Card, CardContent, CardHeader, Grid, IconButton } from '@material-ui/core';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import LinkIcon from '@material-ui/icons/Link';
-
-import NGL from './NGLComponent';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -17,11 +14,14 @@ const useStyles = makeStyles((theme) => ({
 
 const BindingInfo = ({ binding }) => {
   return(
-    <p>
-      <b>{ binding.ligand }</b>
-      {"(Chain "} { binding.chain }{') '}
-      <span> {ReactHtmlParser(binding.affinityMeasure)} { binding.relationType + ' ' + binding.affinityValue + ' ' + binding.affinityUnit }</span>
-    </p>
+    <Grid container justify="space-between">
+      <Grid item>
+        <b>{ binding.ligand }:</b> {"(Chain "} { binding.chain }{') '}
+      </Grid>
+      <Grid item>
+        {ReactHtmlParser(binding.affinityMeasure)} { binding.relationType + ' ' + binding.affinityValue + ' ' + binding.affinityUnit }
+      </Grid>
+    </Grid>
   );
 }
 
@@ -47,14 +47,10 @@ const BindingCard = ({ ligand, bindings }) => {
             <LinkIcon />
           </IconButton>
         }
-        title={ `Binding data ${ligand}` }
+        title={ `Binding data for ${ligand}` }
         subheader="Binding MOAD"
       />
       <CardContent>
-        <NGL
-          file={ `https://files.rcsb.org/download/${ bindings[0][0].proteinID }.pdb` }
-          viewportId={ "viewport-" + ligand }
-        />
         {bindings.map((structure, index) => (
           <React.Fragment key={index}>
             <p>
@@ -64,6 +60,7 @@ const BindingCard = ({ ligand, bindings }) => {
             {structure.map((binding, index) => (
               <BindingInfo key={index} binding={binding} />
             ))}
+            <hr />
           </React.Fragment>
         ))}
       </CardContent>

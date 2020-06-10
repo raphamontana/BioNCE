@@ -136,7 +136,7 @@ class PDBFactory {
       let chemicalID = ligand[0].$.chemicalID;
       let molecularWeight = ligand[0].$.molecularWeight;
       let chemicalName = ligand[0].chemicalName;
-      let formula = ligand[0].formula;
+      let formula = ligand[0].formula[0];
       let smiles = ligand[0].smiles;
       // Get structures list.
       let structures = [];

@@ -25,21 +25,21 @@ const Home = () => {
             <div className="grid">
               <a href="/draw" className="card">
                 <h3>Search &rarr;</h3>
-                <p>Draw a structure and search the database.</p>
+                <p>Draw a structure and query the database.</p>
               </a>
               <a href="/dataset" className="card">
                 <h3>Create a dataset &rarr;</h3>
-                <p>Select molecules and features to download file.</p>
+                <p>Select molecules and features to include in your experiment.</p>
               </a>
 
               <a href="/ml" className="card">
                 <h3>Discover &rarr;</h3>
-                <p>Machine Learning to discover Bioactive New Chemical Entities.</p>
+                <p>Apply Machine Learning to discover Bioactive NCE.</p>
               </a>
 
               <a href="/documentation" className="card">
                 <h3>Documentation &rarr;</h3>
-                <p>Find information about BioNCE features.</p>
+                <p>Get more information about this Intelligent Digital System.</p>
               </a>
             </div>
             <style jsx>{`

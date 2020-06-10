@@ -30,8 +30,8 @@ const PDBStructure = ({ structure }) => {
   return(
     <>
       <NGL
-        file={ `https://files.rcsb.org/download/${ structure.id }.pdb` }
-        viewportId={ "viewport-" + structure.id }
+        pdbFile={ `rcsb://${ structure.id }` }
+        viewportId={ "viewport" }
       />
       <p><b>Structure:</b> <a href={`https://www.rcsb.org/structure/${structure.id}`} target="_blank">{structure.id}</a></p>
       <p><b>Description:</b> {structure.description}</p>
@@ -105,7 +105,7 @@ const PDBCard = ({ data }) => {
           />
         </div>
         <Attribute name="Name" value={ data.name } />
-        <Attribute name="Molecular Formula" value={ data.formula } />
+        <MolecularFormula formula={ data.formula } />
         <Attribute name="Molecular Weight" value={ `${parseFloat(data.weight).toFixed(2)}` } />
 
         <FormControl variant="outlined" className={classes.formControl}>

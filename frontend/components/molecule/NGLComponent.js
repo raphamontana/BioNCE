@@ -1,15 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-function NGLComponent({ viewportId, file }) {
+function NGLComponent({ viewportId, pdbFile }) {
+  const [file, setFile] = useState(null);
+  const [stage, setStage] = useState(null);
+
+  if (pdbFile !== file) {
+    setFile(pdbFile);
+  }
 
   useEffect(() => {
-    const loadNGL = async (viewportId) => {
+    const loadNGL = async () => {
       const NGL = await import('ngl');
       const stage = new NGL.Stage(viewportId);
       stage.loadFile(file, {defaultRepresentation: true});
+      setStage(stage);
     };
-    loadNGL(viewportId);
+    loadNGL();
   },[]);
+
+  useEffect(() => {
+    if (stage !== null) {
+      stage.removeAllComponents();
+      stage.loadFile(file, {defaultRepresentation: true});
+    }
+  },[file]);
 
   return(
     <div id={ viewportId } style={{ width: "100%", height:"250px" }} />
@@ -17,4 +31,3 @@ function NGLComponent({ viewportId, file }) {
 }
 
 export default NGLComponent;
-//https://files.rcsb.org/download/4hhb.pdb

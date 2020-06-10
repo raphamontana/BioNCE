@@ -20,7 +20,6 @@ const MoleculeComponent = ({ id, smiles }) => {
   if (!data) return <div>loading...</div>
 
   let { chembl, pubchem, pdb, bindings } = data;
-  console.log(pdb.structures);
 
   return(
     <ExpansionPanel defaultExpanded>
