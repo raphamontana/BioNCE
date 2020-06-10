@@ -106,7 +106,7 @@ const PDBCard = ({ data }) => {
         </div>
         <Attribute name="Name" value={ data.name } />
         <MolecularFormula formula={ data.formula } />
-        <Attribute name="Molecular Weight" value={ `${parseFloat(data.weight).toFixed(2)}` } />
+        <Attribute name="Molecular Mass" value={ `${parseFloat(data.weight).toFixed(2)}` } />
 
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="structures-label">Structures</InputLabel>

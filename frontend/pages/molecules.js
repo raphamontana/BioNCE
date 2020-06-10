@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Layout from '../components/layout/Layout';
 import MoleculeComponent from '../components/molecule/MoleculeComponent';
 
-let molecules = ["c1ccccc1"];
+let molecules = [];
 
 const Molecules = ({ smiles }) => {
   return(

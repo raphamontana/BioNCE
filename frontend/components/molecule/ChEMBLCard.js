@@ -47,7 +47,7 @@ const ChEMBLCard = ({ data }) => {
         </div>
         <Attribute name="Name" value={ data.pref_name } />
         <MolecularFormula formula={ data.formula } />
-        <Attribute name="Molecular Weight" value={ `${parseFloat(data.full_mwt).toFixed(2)}g/mol` } />
+        <Attribute name="Molecular Mass" value={ `${parseFloat(data.full_mwt).toFixed(2)} g/mol` } />
         <Attribute name="Black box warning" value={ data.bbw } />
         <Attribute name="Chirality" value={ data.chirality } />
         <Attribute name="Max Phase" value={ data.max_phase } />

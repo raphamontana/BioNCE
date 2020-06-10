@@ -12,6 +12,30 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const InhibitionConstant = ({ measure, value, unit }) => {
+  if (measure === "K<sub>a</sub>") {
+    return null;
+  }
+  if (unit === "M^-1") {
+    value = value / 10;
+  }
+  else if (unit === "mM") {
+    value = value / 1000;
+  }
+  else if (unit === "uM") {
+    value = value / 1000000;
+  }
+  else if (unit === "nM") {
+    value = value / 1000000000;
+  }
+  let pValue = Math.log10(1 / value).toFixed(1);
+  return(
+    <>
+      { ReactHtmlParser('p'+measure) } {" = " + pValue}
+    </>
+  );
+}
+
 const BindingInfo = ({ binding }) => {
   return(
     <Grid container justify="space-between">
@@ -20,6 +44,8 @@ const BindingInfo = ({ binding }) => {
       </Grid>
       <Grid item>
         {ReactHtmlParser(binding.affinityMeasure)} { binding.relationType + ' ' + binding.affinityValue + ' ' + binding.affinityUnit }
+        <br />
+        <InhibitionConstant measure={binding.affinityMeasure} value={binding.affinityValue} unit={binding.affinityUnit} />
       </Grid>
     </Grid>
   );

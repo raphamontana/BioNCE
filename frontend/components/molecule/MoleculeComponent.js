@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import useSWR from 'swr';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -14,7 +13,6 @@ import PDBCard from './PDBCard';
 const fetcher = url => fetch(url).then(r => r.json())
 
 const MoleculeComponent = ({ id, smiles }) => {
-  const [structure, setStructure] = useState(0);
   const { data, error } = useSWR(`/api/smiles/${smiles}`, fetcher, { refreshInterval: 0 });
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
@@ -29,7 +27,7 @@ const MoleculeComponent = ({ id, smiles }) => {
       <ExpansionPanelDetails>
         <PubChemCard data={pubchem} />
         <ChEMBLCard data={chembl} />
-        <PDBCard data={pdb} callback={setStructure} />
+        <PDBCard data={pdb} />
         <BindingCard ligand={pdb.id} bindings={bindings} />
       </ExpansionPanelDetails>
     </ExpansionPanel>
@@ -37,4 +35,3 @@ const MoleculeComponent = ({ id, smiles }) => {
 };
 
 export default MoleculeComponent;
-//<span title="Download SDF" style="float: right;"><a href="https://files.rcsb.org/ligands/view/{{ data.pdb.id }}_model.sdf"><i className="ti-export"></i></a></span>

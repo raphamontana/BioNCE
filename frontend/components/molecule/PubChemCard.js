@@ -56,7 +56,7 @@ const PubChemCard = ({ data }) => {
         </div>
         <Attribute name="Name" value={ data.name } />
         <MolecularFormula formula={ data.formula } />
-        <Attribute name="Molecular Weight" value={ `${parseFloat(data.mass).toFixed(2)}g/mol` } />
+        <Attribute name="Molecular Mass" value={ `${parseFloat(data.mass).toFixed(2)} g/mol` } />
         <Attribute name="LogP" value={ data.logp } />
         <Attribute name="Heavy atoms" value={ data.heavy_atoms } />
         <Attribute name="Atom chiral" value={ data.atom_chiral } />
