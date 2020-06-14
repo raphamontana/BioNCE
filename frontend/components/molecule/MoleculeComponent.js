@@ -28,7 +28,7 @@ const MoleculeComponent = ({ id, smiles }) => {
         <PubChemCard data={pubchem} />
         <ChEMBLCard data={chembl} />
         <PDBCard data={pdb} />
-        <BindingCard ligand={pdb.id} bindings={bindings} />
+        <BindingCard ligand={pdb} bindings={bindings} />
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );

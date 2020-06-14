@@ -2,9 +2,10 @@
  * PDB Controller module.
  * @module controller/pdb
  */
-const fetch = require("node-fetch");
-const xml2js = require("xml2js");
-const PDB = require("../models/pdb");
+import fetch from "node-fetch";
+import xml2js from "xml2js";
+import PDBLigand from "../models/pdb_ligand";
+import PDBStructure from "../models/pdb_structure";
 
 // https://www.rcsb.org/pdb/software/rest.do#smiles
 // https://www.rcsb.org/structure/4klb
@@ -15,18 +16,14 @@ const PDB = require("../models/pdb");
 // https://www.ebi.ac.uk/pdbe/graph-api/pdbe_doc/
 // https://www.npmjs.com/package/pdbmine
 
-
 function compare(a, b) {
   const structureA = a.id.toUpperCase();
   const structureB = b.id.toUpperCase();
-
-  let comparison = 0;
   if (structureA > structureB) {
-    comparison = 1;
+    return(1);
   } else if (structureA < structureB) {
-    comparison = -1;
-  }
-  return comparison;
+    return(-1);
+  } else return(0);
 }
 
 
@@ -71,7 +68,6 @@ class PDBFactory {
     return structure;
   }
 
-
   static parseLigandInfo(xml) {
     if (!xml) return;
     // Parse the string to XML Object.
@@ -87,7 +83,6 @@ class PDBFactory {
     // Return the object.
     return (ligandList);
   }
-
 
   /**
    * Return data given a structure ID.
@@ -108,7 +103,7 @@ class PDBFactory {
       if (!ligandRes.ok) return;
       let ligandXML = await ligandRes.text();
       let ligands = this.parseLigandInfo(ligandXML);
-      let pdbStructure = new PDB.PDBStructure(structure.structureId, structure.description, structure.resolution, ligands);
+      let pdbStructure = new PDBStructure(structure.structureId, structure.description, structure.resolution, ligands);
       return (pdbStructure);
     } catch (err) {
       console.log(err);
@@ -147,7 +142,7 @@ class PDBFactory {
         })
       );
       structures.sort(compare);
-      pdbLigand = new PDB.PDBLigand(chemicalID, chemicalName, formula, smiles, molecularWeight, structures);
+      pdbLigand = new PDBLigand(chemicalID, chemicalName, formula, smiles, molecularWeight, structures);
     }
     // Create the object.
     return (pdbLigand);
@@ -162,7 +157,6 @@ class PDBFactory {
    * @returns {Promise<Object>} A ligand object.
    */
   static async searchLigandBySmiles(smiles) {
-    /// TODO: Treat caracter '@' conversion.
     let url = this.SMILES_URL.replace("<SMILES>", encodeURIComponent(smiles));
     try {
       const res = await fetch(url);
@@ -173,6 +167,7 @@ class PDBFactory {
       console.log(err);
     }
   }
+
 }
 
-module.exports = PDBFactory;
+export default PDBFactory;

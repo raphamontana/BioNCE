@@ -80,7 +80,7 @@ export default function appbar() {
           </ListItemIcon>
           <ListItemText primary="Diseases" />
         </ListItem>
-        <NextLink href="/documentation">
+        <NextLink href="/help">
           <ListItem button>
             <ListItemIcon>
               <LibraryBooksIcon />

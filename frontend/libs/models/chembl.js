@@ -52,4 +52,4 @@ class ChEMBL {
     }
 }
 
-module.exports = ChEMBL;
+export default ChEMBL;

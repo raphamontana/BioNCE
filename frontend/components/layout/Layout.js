@@ -1,4 +1,4 @@
-import AppBar from './AppBar';
+import Header from './Header';
 import Sidebar from './Sidebar';
 import useStyles from './style';
 import Copyright from './Copyright';
@@ -9,7 +9,7 @@ export default function Layout( { children } ) {
 
   return (
     <div className={classes.root}>
-      <AppBar />
+      <Header />
       <Sidebar />
       <main
         flexgrow="1"

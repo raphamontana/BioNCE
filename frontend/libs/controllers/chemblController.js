@@ -1,11 +1,15 @@
-const fetch = require("node-fetch");
-const ChEMBL = require("../models/chembl");
+import fetch from "node-fetch";
+import ChEMBL from "../models/chembl";
 
 //https://chembl.gitbook.io/chembl-interface-documentation/web-services/chembl-data-web-services
 class ChEMBLFactory {
-  static URL =
+  static URL_ID =
+    "/chembl/api/data/molecule/<ID>";
+  static URL_SEARCH =
+    "https://www.ebi.ac.uk/chembl/api/data/molecule/search?q=<QUERY>";
+  static URL_SIMILARITY =
     "https://www.ebi.ac.uk/chembl/api/data/similarity/<SMILES>/100.json";
-  static URL_substructure =
+  static URL_SUBSTRUCTURE =
     "https://www.ebi.ac.uk/chembl/api/data/substructure/<SMILES>.json";
 
   static parse(json) {
@@ -61,16 +65,24 @@ class ChEMBLFactory {
     return chembl;
   }
 
-  static async fetch(smiles) {
-    let url = this.URL.replace("<SMILES>", encodeURIComponent(smiles));
+  static async similarity(smiles) {
+    const url = this.URL_SIMILARITY.replace("<SMILES>", encodeURIComponent(smiles));
     try {
       const res = await fetch(url);
-      let data = await res.json();
+      const data = await res.json();
       return this.parse(data);
     } catch (err) {
       console.log(err);
     }
   }
+
+  static async getByID(id) {
+    const url = this.URL_ID.replace("<ID>", encodeURIComponent(id));
+  }
+
+  static async searchByName(query) {
+    const url = this.URL_SEARCH.replace("<QUERY>", encodeURIComponent(query));
+  }
 }
 
-module.exports = ChEMBLFactory;
+export default ChEMBLFactory;

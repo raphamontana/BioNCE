@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
 
 const PubChemCard = ({ data }) => {
   const classes = useStyles();
+
+  if (typeof data === "undefined") {
+    return(null);
+  }
+
   return(
     <Card className={classes.card}>
       <CardHeader
@@ -58,13 +63,13 @@ const PubChemCard = ({ data }) => {
         <MolecularFormula formula={ data.formula } />
         <Attribute name="Molecular Mass" value={ `${parseFloat(data.mass).toFixed(2)} g/mol` } />
         <Attribute name="LogP" value={ data.logp } />
-        <Attribute name="Heavy atoms" value={ data.heavy_atoms } />
+        <Attribute name="Heavy atoms" value={ data.heavy_atoms } tooltip="Number of non-hydrogen atoms." />
         <Attribute name="Atom chiral" value={ data.atom_chiral } />
         <Attribute name="Tautomers" value={ data.tautomers } />
-        <Attribute name="H-Bond Acceptor" value={ data.hydrogen_bond_acceptor } tooltip="Hydrogen Bond Acceptor" />
-        <Attribute name="H-Bond Donor" value={ data.hydrogen_bond_donor } tooltip="Hydrogen Bond Donor" />
-        <Attribute name="Rotatable Bond" value={ data.rotatable_bond } />
-        <Attribute name="Polar surface area" value={ data.polar_surface_area } />
+        <Attribute name="H-Bond Acceptor" value={ data.hydrogen_bond_acceptor } tooltip="Number of hydrogen-bond acceptors in the structure." />
+        <Attribute name="H-Bond Donor" value={ data.hydrogen_bond_donor } tooltip="Number of hydrogen-bond donors in the structure." />
+        <Attribute name="Rotatable Bond" value={ data.rotatable_bond } tooltip="Number of rotatable bonds." />
+        <Attribute name="Polar surface area" value={ data.polar_surface_area } tooltip="Topological polar surface area, computed by the algorithm described in the paper by Ertl et al." />
         <CardActions>
           <Tooltip title="Fingerprint Tanimoto-based 2-dimensional similarity search." enterDelay={500}>
             <Button size="small" color="primary" href="https://pubchem.ncbi.nlm.nih.gov/#query=CID241%20structure&tab=similarity">

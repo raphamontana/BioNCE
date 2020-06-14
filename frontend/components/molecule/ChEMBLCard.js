@@ -15,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ChEMBLCard = ({ data }) => {
   const classes = useStyles();
+
+  if (typeof data === "undefined") {
+    return(null);
+  }
+
   return(
     <Card className={classes.card}>
       <CardHeader
@@ -50,7 +55,7 @@ const ChEMBLCard = ({ data }) => {
         <Attribute name="Molecular Mass" value={ `${parseFloat(data.full_mwt).toFixed(2)} g/mol` } />
         <Attribute name="Black box warning" value={ data.bbw } />
         <Attribute name="Chirality" value={ data.chirality } />
-        <Attribute name="Max Phase" value={ data.max_phase } />
+        <Attribute name="Max Phase" value={ data.max_phase } tooltip="The maximum phase of development reached by this molecule." />
         <Attribute name="ALogP" value={ data.alogp } />
         <Attribute name="Aromatic Rings" value={ data.aromatic_rings } />
         <Attribute name="CX LogD pH7.4" value={ data.cx_logd } />

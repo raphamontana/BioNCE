@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { SimpleImg } from 'react-simple-img';
 import { makeStyles } from '@material-ui/styles';
 import { Avatar, Button, Card, CardActions, CardContent, CardHeader, FormControl,
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PDBStructure = ({ structure }) => {
   const classes = useStyles();
-  const [ligand, setLigand] = useState(structure.ligands[0]);
+  const [ligand, setLigand] = React.useState(structure.ligands[0]);
 
   return(
     <>
@@ -71,7 +70,11 @@ const PDBStructure = ({ structure }) => {
 
 const PDBCard = ({ data }) => {
   const classes = useStyles();
-  const [structureIndex, setStructureIndex] = useState(0);
+  const [structureIndex, setStructureIndex] = React.useState(0);
+
+  if (typeof data === "undefined") {
+    return(null);
+  }
 
   return(
     <Card className={classes.card}>

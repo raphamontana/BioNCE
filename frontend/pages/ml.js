@@ -1,31 +1,61 @@
-import { SimpleImg } from 'react-simple-img';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { Step, Stepper, StepLabel } from '@material-ui/core';
+import DatasetComponent from "../components/ml/DatasetComponent"
+import ModelSelectComponent from "../components/ml/ModelSelectComponent"
+import ResultsComponent from "../components/ml/ResultsComponent"
+import ReviewComponent from "../components/ml/ReviewComponent"
 import Layout from '../components/layout/Layout';
-import useStyles from '../components/layout/style';
 
-const Home = () => {
-  const classes = useStyles();
+const ML = () => {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set());
+  const steps = ['Set dataset', 'Select model', 'Run prediction', "Results"];
 
-  return(
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
+  };
+
+  const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
+  return (
     <Layout>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={`${classes.paper} ${classes.center}`} >
-            <SimpleImg
-              src="images/logo.svg"
-              alt="logo"
-              height="114px"
-            />
-            <Typography component="h2" variant="h6" color="primary" gutterBottom>
-              From a New Chemical Entity to a Bioactive New Chemical Entity.
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
+      <Stepper activeStep={activeStep}>
+        {steps.map((label, index) => {
+          const stepProps = {};
+          const labelProps = {};
+          return(
+            <Step key={label} {...stepProps}>
+              <StepLabel {...labelProps}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+      {activeStep === 0 ? (
+        <DatasetComponent handleNext={handleNext} />
+      ) : activeStep === 1 ? (
+        <ModelSelectComponent handleBack={handleBack} handleNext={handleNext} />
+      ) : activeStep === 2 ? (
+        <ReviewComponent handleBack={handleBack} handleNext={handleNext} />
+      ) : (
+        <ResultsComponent handleReset={handleReset} />
+      )}
     </Layout>
   );
 };
 
-export default Home;
+export default ML;

@@ -1,4 +1,4 @@
-import MoleculeController from "../../../components/molecule/controllers/moleculeController";
+import MoleculeController from "../../../libs/controllers/moleculeController";
 
 export default async (req, res) => {
   const { query: { smiles } } = req;

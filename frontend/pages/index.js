@@ -37,7 +37,7 @@ const Home = () => {
                 <p>Apply Machine Learning to discover Bioactive NCE.</p>
               </a>
 
-              <a href="/documentation" className="card">
+              <a href="/help" className="card">
                 <h3>Documentation &rarr;</h3>
                 <p>Get more information about this Intelligent Digital System.</p>
               </a>

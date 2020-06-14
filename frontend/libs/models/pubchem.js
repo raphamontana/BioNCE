@@ -21,4 +21,4 @@ class Pubchem {
     }
 }
 
-module.exports = Pubchem;
+export default Pubchem;

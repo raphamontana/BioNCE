@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Box, Button, Grid, Paper, TextField } from '@material-ui/core';
 import { Add as AddIcon,
          Clear as ClearIcon,
@@ -12,8 +11,8 @@ import StructuresUploadButton from '../components/draw/StructuresUploadButton';
 
 const Draw = () => {
   const classes = useStyles();
-  const [smiles, setSmiles] = useState('');
-  const [smilesList, setSmilesList] = useState('');
+  const [smiles, setSmiles] = React.useState('');
+  const [smilesList, setSmilesList] = React.useState('');
 
   const concatSmilesList = (structure) => {
     if (structure !== '') {
@@ -75,6 +74,7 @@ const Draw = () => {
 
           <Paper className={classes.paper} style={{align: 'center'}}>
             <StructuresUploadButton />
+            <p>* File format: Files that contain multiple SMILES codes need to list one code per line followed by the name of the compound (separated by a space or tab). If no compound name is given, 'unnamed' will be assigned. These files have to carry a '.smi' or '.smiles' extension.</p>
           </Paper>
         </Grid>
 

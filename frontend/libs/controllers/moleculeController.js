@@ -19,12 +19,8 @@ function compare(a, b) {
 class MoleculeController {
 
   static async searchBySmiles(smiles) {
-
-  //const res = await fetch('https://.../posts');
-  //const posts = await res.json()
-
-    const pubchem = PubchemController.fetch(smiles);
-    const chembl = ChemblController.fetch(smiles);
+    const pubchem = PubchemController.searchBySmiles(smiles);
+    const chembl = ChemblController.similarity(smiles);
     const pdb = await PDBController.searchLigandBySmiles(smiles);
     const bindings = [];
     if (pdb) {
@@ -46,6 +42,12 @@ class MoleculeController {
       bindings: bindings
     };
     return(molecule);
+  }
+
+  static async searchByName(query) {
+    const pubchem = PubchemController.searchByName(query);
+    const chembl = ChemblController.searchByName(query);
+    return({pubchem, chembl});
   }
 
 }

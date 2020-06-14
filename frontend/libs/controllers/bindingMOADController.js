@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const Papa = require('papaparse');
+import fetch from "node-fetch";
+import Papa from "papaparse";
 
 function compare(a, b) {
   const chainA = a.chain.toUpperCase();
@@ -78,4 +78,4 @@ class BindingMOADController {
   }
 }
 
-module.exports = BindingMOADController;
+export default BindingMOADController;

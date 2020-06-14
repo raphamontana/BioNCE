@@ -5,7 +5,7 @@ import Layout from '../components/layout/Layout';
 import Link from '../components/layout/Link';
 import useStyles from '../components/layout/style';
 
-const Home = () => {
+const Help = () => {
   const classes = useStyles();
 
   return(
@@ -63,4 +63,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Help;
