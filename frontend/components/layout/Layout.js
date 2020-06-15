@@ -19,8 +19,8 @@ export default function Layout( { children } ) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           { children }
-          <Copyright />
         </Container>
+        <Copyright />
       </main>
     </div>
   );

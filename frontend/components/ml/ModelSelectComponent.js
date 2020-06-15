@@ -1,10 +1,20 @@
 import { Button, FormControl, InputLabel, MenuItem,
          Paper, Select, Typography } from '@material-ui/core';
+import AlertDialog from "./AlertDialog"
 import useStyles from '../layout/style';
 
-const ModelSelectComponent = ({ handleBack, handleNext }) => {
+const ModelSelectComponent = ({ model, setModel, handleBack, handleNext }) => {
   const classes = useStyles();
-  const [model, setModel] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
+  const hasSelected = () => {
+    if (model !== "") {
+      handleNext();
+    }
+    else {
+      setOpen(true);
+    }
+  }
 
   return(
     <>
@@ -31,11 +41,17 @@ const ModelSelectComponent = ({ handleBack, handleNext }) => {
       <Button
         variant="contained"
         color="primary"
-        onClick={handleNext}
+        onClick={hasSelected}
         className={classes.button}
       >
         Next
       </Button>
+      <AlertDialog
+        title="No model selected"
+        content="Choose a ML model to proceed."
+        open={open}
+        setOpen={setOpen}
+      />
     </>
   );
 }

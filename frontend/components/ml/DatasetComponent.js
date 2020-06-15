@@ -1,9 +1,19 @@
 import { Button, Paper, TextField, Typography } from '@material-ui/core';
+import AlertDialog from "./AlertDialog"
 import useStyles from '../layout/style';
 
-const DatasetComponent = ({ handleNext }) => {
+const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
   const classes = useStyles();
-  const [dataset, setDataset] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
+  const submitDataset = () => {
+    if (dataset !== "") {
+      handleNext();
+    }
+    else {
+      setOpen(true);
+    }
+  }
 
   return(
     <>
@@ -26,11 +36,17 @@ const DatasetComponent = ({ handleNext }) => {
       <Button
         variant="contained"
         color="primary"
-        onClick={handleNext}
+        onClick={submitDataset}
         className={classes.button}
       >
         Next
       </Button>
+      <AlertDialog
+        title="No input written"
+        content="Insert the dataset to query the model."
+        open={open}
+        setOpen={setOpen}
+      />
     </>
   );
 };

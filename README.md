@@ -1,10 +1,15 @@
 # BioNCE - Biological New Chemical Entities
 
-Sistema Digital Inteligente para classificação de móleculas comparando com bancos de dados químicos e biológicos.
+![Alt text](docs/images/logo/bionce-logo.png?raw=true "BioNCE logo")
+
+An Intelligent digital system for classification of molecules querying chemical and biological databases and entities discovery based on machine learning.
 
 ### Motivation
 
 ### Features
+
+- Query entities on several databases (ChEMBL, PDB, PubChem, others);
+- Machine learning models ready to apply.
 
 ### Examples
 

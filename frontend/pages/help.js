@@ -34,6 +34,9 @@ const Help = () => {
             </Typography>
             <Typography variant="h6">
               <Link href="/contact">Get in touch</Link>
+              <a href="mailto:nequimed@iqsc.usp.br">nequimed@iqsc.usp.br</a>
+              Av. Trabalhador São Carlense, 400
+              Sao Carlos, SP 13566-590
             </Typography>
             <Typography variant="h6">
               Useful links:

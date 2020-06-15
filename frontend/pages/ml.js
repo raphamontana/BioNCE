@@ -6,22 +6,13 @@ import ReviewComponent from "../components/ml/ReviewComponent"
 import Layout from '../components/layout/Layout';
 
 const ML = () => {
+  const [dataset, setDataset] = React.useState('');
+  const [model, setModel] = React.useState('');
   const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
   const steps = ['Set dataset', 'Select model', 'Run prediction', "Results"];
 
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
-
   const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
   };
 
   const handleBack = () => {
@@ -29,6 +20,8 @@ const ML = () => {
   };
 
   const handleReset = () => {
+    setDataset('');
+    setModel('');
     setActiveStep(0);
   };
 
@@ -46,11 +39,11 @@ const ML = () => {
         })}
       </Stepper>
       {activeStep === 0 ? (
-        <DatasetComponent handleNext={handleNext} />
+        <DatasetComponent dataset={dataset} setDataset={setDataset} handleNext={handleNext} />
       ) : activeStep === 1 ? (
-        <ModelSelectComponent handleBack={handleBack} handleNext={handleNext} />
+        <ModelSelectComponent model={model} setModel={setModel} handleBack={handleBack} handleNext={handleNext} />
       ) : activeStep === 2 ? (
-        <ReviewComponent handleBack={handleBack} handleNext={handleNext} />
+        <ReviewComponent dataset={dataset} model={model} handleBack={handleBack} handleNext={handleNext} />
       ) : (
         <ResultsComponent handleReset={handleReset} />
       )}

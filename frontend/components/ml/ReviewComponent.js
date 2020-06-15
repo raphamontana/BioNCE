@@ -1,14 +1,15 @@
 import { Button, Paper, Typography } from '@material-ui/core';
 import useStyles from '../layout/style';
 
-const ReviewComponent = ({ handleBack, handleNext }) => {
+const ReviewComponent = ({ dataset, model, handleBack, handleNext }) => {
   const classes = useStyles();
 
   return(
     <>
       <Paper className={classes.paper} >
         <Typography variant="h6" color="initial">REVIEW</Typography>
-        <Typography variant="body2" color="initial">Selected model:</Typography>
+        <Typography variant="body2" color="initial">Dataset: {dataset}</Typography>
+        <Typography variant="body2" color="initial">Model: {model}</Typography>
       </Paper>
       <Button onClick={handleBack} className={classes.button}>
         Back
@@ -19,7 +20,7 @@ const ReviewComponent = ({ handleBack, handleNext }) => {
         onClick={handleNext}
         className={classes.button}
       >
-        Next
+        Run
       </Button>
     </>
   );
