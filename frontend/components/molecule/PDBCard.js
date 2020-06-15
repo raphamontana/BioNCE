@@ -30,7 +30,7 @@ const PDBStructure = ({ structure }) => {
     <>
       <NGL
         pdbFile={ `rcsb://${ structure.id }` }
-        viewportId={ "viewport" }
+        viewportId={ `viewport-${ structure.id }` }
       />
       <p><b>Structure:</b> <a href={`https://www.rcsb.org/structure/${structure.id}`} target="_blank">{structure.id}</a></p>
       <p><b>Description:</b> {structure.description}</p>
