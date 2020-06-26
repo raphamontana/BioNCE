@@ -72,7 +72,7 @@ const PubChemCard = ({ data }) => {
         <Attribute name="Polar surface area" value={ data.polar_surface_area } tooltip="Topological polar surface area, computed by the algorithm described in the paper by Ertl et al." />
         <CardActions>
           <Tooltip title="Fingerprint Tanimoto-based 2-dimensional similarity search." enterDelay={500}>
-            <Button size="small" color="primary" href="https://pubchem.ncbi.nlm.nih.gov/#query=CID241%20structure&tab=similarity">
+            <Button size="small" color="primary" href={`https://pubchem.ncbi.nlm.nih.gov/#query=CID${data.cid}%20structure&tab=similarity`}>
               Similar structures
             </Button>
           </Tooltip>

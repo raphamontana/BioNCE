@@ -4,6 +4,7 @@ import { Avatar, Button, Card, CardActions, CardContent, CardHeader, FormControl
          IconButton, InputLabel, MenuItem , Select, Tooltip } from '@material-ui/core';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import LinkIcon from '@material-ui/icons/Link';
+import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import Attribute from './Attribute';
 import MolecularFormula from './MolecularFormula';
 
@@ -61,6 +62,7 @@ const PDBStructure = ({ structure }) => {
         size="small"
         color="primary"
         href={`https://www.rcsb.org/3d-view/${structure.id}?preset=ligandInteraction&sele=${ligand}`}
+        startIcon={<ThreeDRotationIcon/>}
       >
         3D interaction
       </Button>

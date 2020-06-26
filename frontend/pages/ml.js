@@ -6,7 +6,7 @@ import ReviewComponent from "../components/ml/ReviewComponent"
 import Layout from '../components/layout/Layout';
 
 const ML = () => {
-  const [dataset, setDataset] = React.useState('');
+  const [dataset, setDataset] = React.useState([]);
   const [model, setModel] = React.useState('');
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = ['Set dataset', 'Select model', 'Run prediction', "Results"];
@@ -20,7 +20,7 @@ const ML = () => {
   };
 
   const handleReset = () => {
-    setDataset('');
+    setDataset([]);
     setModel('');
     setActiveStep(0);
   };

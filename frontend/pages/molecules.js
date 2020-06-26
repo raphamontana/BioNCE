@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Layout from '../components/layout/Layout';
 import MoleculeComponent from '../components/molecule/MoleculeComponent';
 
-let molecules = [];
+const molecules = [];
 
 const Molecules = ({ smiles }) => {
   return(
@@ -21,15 +21,9 @@ const Molecules = ({ smiles }) => {
 
 export async function getServerSideProps(context) {
   const query = await parse(context.req);
-  const { structure, structuresList, structuresFile } = query;
-  if (structure) {
-    molecules = [structure];
-  }
-  else if (structuresList) {
-    molecules = [...new Set(structuresList.match(/[^\r\n]+/g).map((item) => item.trim()))];
-  }
-  else if (structuresFile) {
-    molecules = [...new Set(structuresFile.split(','))];
+  const { dataset } = query;
+  if (dataset) {
+    dataset.split(',').map(m => molecules.push(m));
   }
   return { props: { smiles: molecules } };
 };
