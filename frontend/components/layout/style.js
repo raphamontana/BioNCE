@@ -85,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
   },
   jsme: {
     minWidth: '369px',
-    marginBottom: theme.spacing(3),
   },
   menuButton: {
     marginRight: 36,
@@ -98,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    marginBottom: theme.spacing(2),
   },
   search: {
     position: 'relative',

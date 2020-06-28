@@ -1,14 +1,15 @@
-import { Box, Button, Grid, Paper, TextField } from '@material-ui/core';
+import { Box, Button, Grid, Paper, TextField } from "@material-ui/core";
 import { Add as AddIcon,
          Clear as ClearIcon,
-         Search as SearchIcon } from '@material-ui/icons';
-import Layout from '../components/layout/Layout';
-import useStyles from '../components/layout/style';
-import LoadDrugButton from '../components/draw/LoadDrugButton';
-import JSMEComponent, { JSMEAcknowledgement } from '../components/draw/JSMEComponent';
-import StructuresUploadButton from '../components/draw/StructuresUploadButton';
-import StructuresListComponent from '../components/draw/StructuresListComponent';
+         Search as SearchIcon } from "@material-ui/icons";
+import Layout from "../components/layout/Layout";
+import useStyles from "../components/layout/style";
+import LoadDrugButton from "../components/draw/LoadDrugButton";
+import JSMEComponent, { JSMEAcknowledgement } from "../components/draw/JSMEComponent";
+import StructuresUploadButton from "../components/draw/StructuresUploadButton";
+import StructuresListComponent from "../components/draw/StructuresListComponent";
 
+import SMILES from "../libs/models/SMILES";
 
 const Draw = () => {
   const classes = useStyles();
@@ -17,11 +18,14 @@ const Draw = () => {
   const [dataset, setDataset] = React.useState([]);
 
   const addToDataset = (newStructures) => {
-    let newStructuresList = newStructures.match(/[^\r\n]+/g);
-    if (newStructuresList !== null) {
-      newStructuresList = newStructuresList.map((item) => item.trim().split(' ')[0]);
+    let arr = newStructures.match(/[^\r\n]+/g);
+    if (arr !== null) {
+      arr = arr.map((item) => item.trim().split(' ')[0].toUpperCase());
+      for (let i = 0; i < arr.length; i++) {
+        if (!SMILES.isValid(arr[i])) { arr.splice(i, 1); }
+      };
       const structuresSet = new Set(dataset);
-      newStructuresList.forEach(e => structuresSet.add(e));
+      arr.forEach(e => structuresSet.add(e));
       if (structuresSet.size > dataset.length) {
         setDataset([...structuresSet]);
       }
@@ -51,7 +55,7 @@ const Draw = () => {
         <Grid item xs>
           <Paper className={`${classes.paper} ${classes.jsme}`} >
             Draw smiles
-            <JSMEComponent callback={e => setJSMESmiles( e )} />
+            <JSMEComponent callback={s => setJSMESmiles(s)} />
             <Box display="inline" alignItems="center">
               <TextField
                 id="structure"
@@ -60,7 +64,7 @@ const Draw = () => {
                 variant="outlined"
                 className={classes.textfield}
                 value={jsmeSmiles}
-                onChange={e => setJSMESmiles( e.target.value )}
+                onChange={e => setJSMESmiles(e.target.value)}
               />
               <Button
                 variant="contained"

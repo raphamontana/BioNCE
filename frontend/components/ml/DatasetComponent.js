@@ -1,58 +1,12 @@
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Grid, IconButton, TextField, Typography, Paper } from '@material-ui/core';
-import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
-import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import AddIcon from '@material-ui/icons/Add';
-
+import { Box, Button, Grid, TextField, Typography } from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary } from "./ExpansionPanel"
+import { Add as AddIcon } from '@material-ui/icons';
 import AlertDialog from "./AlertDialog"
-import StructuresUploadButton from "../draw/StructuresUploadButton"
 import JSMEComponent from "../draw/JSMEComponent"
+import StructuresUploadButton from "../draw/StructuresUploadButton"
 import StructuresListComponent from "../draw/StructuresListComponent"
-
 import useStyles from '../layout/style';
-
-
-const ExpansionPanel = withStyles({
-  root: {
-    border: '1px solid rgba(0, 0, 0, .125)',
-    boxShadow: 'none',
-    '&:not(:last-child)': {
-      borderBottom: 0,
-    },
-    '&:before': {
-      display: 'none',
-    },
-    '&$expanded': {
-      margin: 'auto',
-    },
-  },
-  expanded: {},
-})(MuiExpansionPanel);
-
-const ExpansionPanelSummary = withStyles({
-  root: {
-    backgroundColor: 'rgba(0, 0, 0, .03)',
-    borderBottom: '1px solid rgba(0, 0, 0, .125)',
-    marginBottom: -1,
-    minHeight: 56,
-    '&$expanded': {
-      minHeight: 56,
-    },
-  },
-  content: {
-    '&$expanded': {
-      margin: '12px 0',
-    },
-  },
-  expanded: {},
-})(MuiExpansionPanelSummary);
-
-const ExpansionPanelDetails = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiExpansionPanelDetails);
 
 
 const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
@@ -60,6 +14,8 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
   const [open, setOpen] = React.useState(false);
   const [expanded, setExpanded] = React.useState('panel1');
   const [structuresTextField, setStructuresTextField] = React.useState('');
+  const [jsmeSmiles, setJSMESmiles] = React.useState('');
+
 
   const submit = () => {
     if (dataset.length !== 0) {
@@ -99,7 +55,43 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
           <Typography variant="h6" color="initial">DATASET INPUT</Typography>
           <ExpansionPanel square expanded={expanded === 'panel1'} onChange={handleExpansion('panel1')}>
             <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
-              <Typography>#1 Write</Typography>
+              <Typography>#1 Draw</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Grid
+                container
+                direction="column"
+                justify="flex-start"
+              >
+                <Grid item>
+                  <JSMEComponent callback={s => setJSMESmiles(s)} />
+                  <Box display="inline" alignItems="center">
+                    <TextField
+                      id="structure"
+                      name="structure"
+                      label="SMILES"
+                      variant="outlined"
+                      className={classes.textfield}
+                      value={jsmeSmiles}
+                      onChange={e => setJSMESmiles(e.target.value)}
+                    />
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                      startIcon={<AddIcon />}
+                      onClick={() => addToDataset(jsmeSmiles)}
+                    >
+                      Add
+                    </Button>
+                  </Box>
+                </Grid>
+              </Grid>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel square expanded={expanded === 'panel2'} onChange={handleExpansion('panel2')}>
+            <ExpansionPanelSummary aria-controls="panel2d-content" id="panel2d-header">
+              <Typography>#2 Write</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Grid
@@ -115,7 +107,7 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
                     onChange={(e) => setStructuresTextField(e.target.value)}
                     variant="outlined"
                     multiline
-                    rows={10}
+                    rows={15}
                     className={classes.textfield}
                   />
                 </Grid>
@@ -130,16 +122,6 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
                   </Button>
                 </Grid>
               </Grid>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel square expanded={expanded === 'panel2'} onChange={handleExpansion('panel2')}>
-            <ExpansionPanelSummary aria-controls="panel2d-content" id="panel2d-header">
-              <Typography>#2 Draw</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Paper>
-                <JSMEComponent />
-              </Paper>
             </ExpansionPanelDetails>
           </ExpansionPanel>
           <ExpansionPanel square expanded={expanded === 'panel3'} onChange={handleExpansion('panel3')}>

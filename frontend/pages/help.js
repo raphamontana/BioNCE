@@ -56,6 +56,7 @@ const Help = () => {
               2D chemical structure image recognition<br />
               <a href="https://lifescience.opensource.epam.com/imago/index.html">Imago</a><br />
               <a href="https://cactus.nci.nih.gov/cgi-bin/osra/index.cgi">OSRA</a><br />
+              <a href="http://dx.doi.org/10.1021/ci00057a005">SMILES, a Chemical Language and Information System. 1. Introduction to Methodology and Encoding Rules</a>
               pubchem Related compounds download 7. bioactivity<br />
               ChEMBL similarity and substructure download
             </Typography>
