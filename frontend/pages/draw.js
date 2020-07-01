@@ -20,7 +20,7 @@ const Draw = () => {
   const addToDataset = (newStructures) => {
     let arr = newStructures.match(/[^\r\n]+/g);
     if (arr !== null) {
-      arr = arr.map((item) => item.trim().split(' ')[0].toUpperCase());
+      arr = arr.map((item) => item.trim().split(' ')[0]);
       for (let i = 0; i < arr.length; i++) {
         if (!SMILES.isValid(arr[i])) { arr.splice(i, 1); }
       };

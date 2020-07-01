@@ -1,7 +1,0 @@
-"""
-This file lists all of the Python packages that your app depends on.
-You may have separate files for production and development dependencies.
-"""
-
-Flask==1.1.1
-requests==2.22.0

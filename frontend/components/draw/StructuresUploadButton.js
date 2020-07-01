@@ -34,7 +34,7 @@ const StructuresUploadButton = ({ addStructures }) => {
         acceptedFiles={['.csv', '.smi']}
         showPreviews={false}
         filesLimit={1}
-        maxFileSize={500000}
+        maxFileSize={1000000}
         onClose={() => setOpen(false)}
       />
     </>

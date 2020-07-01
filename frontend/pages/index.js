@@ -27,11 +27,12 @@ const Home = () => {
                 <h3>Search &rarr;</h3>
                 <p>Draw a structure and query the database.</p>
               </a>
+              {/*
               <a href="/dataset" className="card">
                 <h3>Create a dataset &rarr;</h3>
                 <p>Select molecules and features to include in your experiment.</p>
               </a>
-
+              */}
               <a href="/ml" className="card">
                 <h3>Discover &rarr;</h3>
                 <p>Apply Machine Learning to discover Bioactive NCE.</p>

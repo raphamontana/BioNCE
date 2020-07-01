@@ -45,7 +45,7 @@ const ML = () => {
       ) : activeStep === 2 ? (
         <ReviewComponent dataset={dataset} model={model} handleBack={handleBack} handleNext={handleNext} />
       ) : (
-        <ResultsComponent handleReset={handleReset} />
+        <ResultsComponent dataset={dataset} model={model} handleReset={handleReset} />
       )}
     </Layout>
   );

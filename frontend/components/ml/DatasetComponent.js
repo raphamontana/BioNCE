@@ -1,4 +1,3 @@
-import { withStyles } from '@material-ui/core/styles';
 import { Box, Button, Grid, TextField, Typography } from '@material-ui/core';
 import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary } from "./ExpansionPanel"
 import { Add as AddIcon } from '@material-ui/icons';
@@ -7,7 +6,7 @@ import JSMEComponent from "../draw/JSMEComponent"
 import StructuresUploadButton from "../draw/StructuresUploadButton"
 import StructuresListComponent from "../draw/StructuresListComponent"
 import useStyles from '../layout/style';
-
+import SMILES from "../../libs/models/SMILES";
 
 const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
   const classes = useStyles();
@@ -15,7 +14,6 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
   const [expanded, setExpanded] = React.useState('panel1');
   const [structuresTextField, setStructuresTextField] = React.useState('');
   const [jsmeSmiles, setJSMESmiles] = React.useState('');
-
 
   const submit = () => {
     if (dataset.length !== 0) {
@@ -26,12 +24,15 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
     }
   }
 
-  const addToDataset = (structures) => {
-    let structuresList = structures.match(/[^\r\n]+/g);
-    if (structuresList !== null) {
-      structuresList = structuresList.map((item) => item.trim().split(' ')[0]);
+  const addToDataset = (newStructures) => {
+    let arr = newStructures.match(/[^\r\n]+/g);
+    if (arr !== null) {
+      arr = arr.map((item) => item.trim().split(' ')[0]);
+      for (let i = 0; i < arr.length; i++) {
+        if (!SMILES.isValid(arr[i])) { arr.splice(i, 1); }
+      };
       const structuresSet = new Set(dataset);
-      structuresList.forEach(e => structuresSet.add(e));
+      arr.forEach(e => structuresSet.add(e));
       if (structuresSet.size > dataset.length) {
         setDataset([...structuresSet]);
       }
