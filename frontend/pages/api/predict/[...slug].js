@@ -6,7 +6,7 @@ export default async (req, res) => {
   const smiles = slug[1];
 
   let active;
-  let url = `https://bionce.herokuapp.com/?model=${encodeURIComponent(model)}&smiles=${encodeURIComponent(smiles)}`; //encodeURIComponent
+  let url = `https://bionce.herokuapp.com/?model=${encodeURIComponent(model)}&smiles=${encodeURIComponent(smiles)}`;
 
   try {
     const res = await fetch(url);

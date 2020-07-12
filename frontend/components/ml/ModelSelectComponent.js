@@ -9,21 +9,14 @@ const ModelSelectComponent = ({ model, setModel, handleBack, handleNext }) => {
 
   const models = {
     "covid-19-rf-v20.6": "COVID-19 (RF v20.6)",
-    //"covid-19-fda-v20.6": "COVID-19 (FDA v20.6)",
-    //"covid-19-rfe-v20.6": "COVID-19 (RFE v20.6)",
     "covid-19-mlp-v20.6": "COVID-19 (MLP v20.6)",
     "covid-19-gpc-v20.6": "COVID-19 (GPC v20.6)",
     "catl-catb-gpc-v20.6": "CatL-CatB (GPC v20.6)",
     "catl-catb-mlp-v20.6": "CatL-CatB (MLP v20.6)",
     "catl-catb-rf-v20.6": "CatL-CatB (RF v20.6)",
-    //"catl-catb-fda-v20.6": "CatL-CatB (FDA v20.6)",
-    //"catl-catb-rfe-v20.6": "CatL-CatB (RFE v20.6)",
     "catl-cats-gpc-v20.6": "CatL-CatS (GPC v20.6)",
     "catl-cats-mlp-v20.6": "CatL-CatS (MLP v20.6)",
     "catl-cats-rf-v20.6": "CatL-CatS (RF v20.6)"
-    //"catl-cats-fda-v20.6": "CatL-CatS (FDA v20.6)",
-    //"catl-cats-rfe-v20.6": "CatL-CatS (RFE v20.6)",
-    //"drugbank-rf-v20.6": "DrugBank (RF v20.6)"
   };
 
   const hasSelected = () => {
