@@ -7,7 +7,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 const fetcher = url => fetch(url).then(r => r.json());
 
 const ResultItem = ({ id, model, smiles }) => {
-  const { data, error } = useSWR(`/api/predict/${model}/${smiles}`, fetcher, { refreshInterval: 0 });
+  const { data, error } = useSWR(`/api/predict/${encodeURIComponent(model)}/${encodeURIComponent(smiles)}`, fetcher, { refreshInterval: 0 });
   if (error) return <div>Failed to predict: {smiles}</div>
   if (!data) return <LinearProgress />
 
