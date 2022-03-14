@@ -9,112 +9,15 @@ Machine Learning model.
 # Import libs.
 ###############################################################################
 
-import joblib
-import pandas as pd
+from functions.runModel import prediction
+from functions.ad import fingerprint_ad, descriptor_ad
+from functions.descriptors import descriptors
+from functions.exmol_apply import get_similar_actives
+from functions.filter_Ro5 import rule_of_five
+from functions.pains import pass_pains, pains_highlight
+from functions.standardize import standardize_smiles
+
 from flask import Flask, jsonify, request
-from rdkit import Chem
-from rdkit.Chem import Descriptors, rdMolDescriptors
-
-
-###############################################################################
-# Load ML models.
-###############################################################################
-
-models = dict()
-models["covid-19-rf-v20.6"] = joblib.load("models/covid-19/RFCovCHEMBL.pkl")
-models["covid-19-fda-v20.6"] = joblib.load("models/covid-19/RFCovCHEMBLfda.pkl")
-models["covid-19-rfe-v20.6"] = joblib.load("models/covid-19/RFCovCHEMBLrfe.pkl")
-models["covid-19-mlp-v20.6"] = joblib.load("models/covid-19/MLPCov.pkl")
-models["covid-19-gpc-v20.6"] = joblib.load("models/covid-19/GPCCov.pkl")
-models["catl-catb-gpc-v20.6"] = joblib.load("models/CPs/CatLCatB/GPCCatLCatB.pkl")
-models["catl-catb-mlp-v20.6"] = joblib.load("models/CPs/CatLCatB/MLPCatLCatB.pkl")
-models["catl-catb-rf-v20.6"] = joblib.load("models/CPs/CatLCatB/RFCatLCatB.pkl")
-models["catl-catb-fda-v20.6"] = joblib.load("models/CPs/CatLCatB/RFCatLCatBfda.pkl")
-models["catl-catb-rfe-v20.6"] = joblib.load("models/CPs/CatLCatB/RFCatLCatBrfe.pkl")
-models["catl-cats-gpc-v20.6"] = joblib.load("models/CPs/CatLCatS/GPCCatLCatS.pkl")
-models["catl-cats-mlp-v20.6"] = joblib.load("models/CPs/CatLCatS/MLPCatLCatS.pkl")
-models["catl-cats-rf-v20.6"] = joblib.load("models/CPs/CatLCatS/RFCatLCatS.pkl")
-models["catl-cats-fda-v20.6"] = joblib.load("models/CPs/CatLCatS/RFCatLCatsfda.pkl")
-models["catl-cats-rfe-v20.6"] = joblib.load("models/CPs/CatLCatS/RFCatLCatSrfe.pkl")
-models["drugbank-rf-v20.6"] = joblib.load("models/drugbank/RFappInvDB.pkl")
-
-
-###############################################################################
-# Calculate descriptors function.
-###############################################################################
-
-def _calculateDescriptors(mol):
-    df = pd.DataFrame(index=[0])
-    df["SlogP"] = rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
-    df["SMR"] = rdMolDescriptors.CalcCrippenDescriptors(mol)[1]
-    df["LabuteASA"] = rdMolDescriptors.CalcLabuteASA(mol)
-    df["TPSA"] = Descriptors.TPSA(mol)
-    df["AMW"] = Descriptors.MolWt(mol)
-    df["ExactMW"] = rdMolDescriptors.CalcExactMolWt(mol)
-    df["NumLipinskiHBA"] = rdMolDescriptors.CalcNumLipinskiHBA(mol)
-    df["NumLipinskiHBD"] = rdMolDescriptors.CalcNumLipinskiHBD(mol)
-    df["NumRotatableBonds"] = rdMolDescriptors.CalcNumRotatableBonds(mol)
-    df["NumHBD"] = rdMolDescriptors.CalcNumHBD(mol)
-    df["NumHBA"] = rdMolDescriptors.CalcNumHBA(mol)
-    df["NumAmideBonds"] = rdMolDescriptors.CalcNumAmideBonds(mol)
-    df["NumHeteroAtoms"] = rdMolDescriptors.CalcNumHeteroatoms(mol)
-    df["NumHeavyAtoms"] = Chem.rdchem.Mol.GetNumHeavyAtoms(mol)
-    df["NumAtoms"] = Chem.rdchem.Mol.GetNumAtoms(mol)
-    df["NumRings"] = rdMolDescriptors.CalcNumRings(mol)
-    df["NumAromaticRings"] = rdMolDescriptors.CalcNumAromaticRings(mol)
-    df["NumSaturatedRings"] = rdMolDescriptors.CalcNumSaturatedRings(mol)
-    df["NumAliphaticRings"] = rdMolDescriptors.CalcNumAliphaticRings(mol)
-    df["NumAromaticHeterocycles"] = \
-        rdMolDescriptors.CalcNumAromaticHeterocycles(mol)
-    df["NumSaturatedHeterocycles"] = \
-        rdMolDescriptors.CalcNumSaturatedHeterocycles(mol)
-    df["NumAliphaticHeterocycles"] = \
-        rdMolDescriptors.CalcNumAliphaticHeterocycles(mol)
-    df["NumAromaticCarbocycles"] = \
-        rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
-    df["NumSaturatedCarbocycles"] = \
-        rdMolDescriptors.CalcNumSaturatedCarbocycles(mol)
-    df["NumAliphaticCarbocycles"] = \
-        rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
-    df["FractionCSP3"] = rdMolDescriptors.CalcFractionCSP3(mol)
-    df["Chi0v"] = rdMolDescriptors.CalcChi0v(mol)
-    df["Chi1v"] = rdMolDescriptors.CalcChi1v(mol)
-    df["Chi2v"] = rdMolDescriptors.CalcChi2v(mol)
-    df["Chi3v"] = rdMolDescriptors.CalcChi3v(mol)
-    df["Chi4v"] = rdMolDescriptors.CalcChi4v(mol)
-    df["Chi1n"] = rdMolDescriptors.CalcChi1n(mol)
-    df["Chi2n"] = rdMolDescriptors.CalcChi2n(mol)
-    df["Chi3n"] = rdMolDescriptors.CalcChi3n(mol)
-    df["Chi4n"] = rdMolDescriptors.CalcChi4n(mol)
-    df["HallKierAlpha"] = rdMolDescriptors.CalcHallKierAlpha(mol)
-    df["kappa1"] = rdMolDescriptors.CalcKappa1(mol)
-    df["kappa2"] = rdMolDescriptors.CalcKappa2(mol)
-    df["kappa3"] = rdMolDescriptors.CalcKappa3(mol)
-    slogp_VSA = list(map(lambda i: "slogp_VSA"+str(i), list(range(1, 13))))
-    df = df.assign(**dict(zip(slogp_VSA, rdMolDescriptors.SlogP_VSA_(mol))))
-    smr_VSA = list(map(lambda i: "smr_VSA"+str(i), list(range(1, 11))))
-    df = df.assign(**dict(zip(smr_VSA, rdMolDescriptors.SMR_VSA_(mol))))
-    peoe_VSA = list(map(lambda i: "peoe_VSA"+str(i), list(range(1, 15))))
-    df = df.assign(**dict(zip(peoe_VSA, rdMolDescriptors.PEOE_VSA_(mol))))
-    MQNs = list(map(lambda i: "MQN"+str(i), list(range(1, 43))))
-    df = df.assign(**dict(zip(MQNs, rdMolDescriptors.MQNs_(mol))))
-    return df
-
-
-###############################################################################
-# Run prediction function.
-###############################################################################
-
-def _prediction(model, smiles):
-    mol = Chem.MolFromSmiles(smiles)
-    if mol is None:
-        return("SMILES Parse Error")
-    df = _calculateDescriptors(mol)
-    if model in models:
-        res = models[model].predict(df)
-        return res[0]
-    else:
-        return("Model not found.")
 
 
 ###############################################################################
@@ -124,7 +27,7 @@ def _prediction(model, smiles):
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/prediction')
 def prediction_endpoint():
     """
     Prediction API.
@@ -136,8 +39,67 @@ def prediction_endpoint():
     """
     model = request.args.get('model')
     smiles = request.args.get('smiles')
-    prediction = _prediction(model, smiles)
-    return jsonify({'prediction': repr(prediction)})
+    molPrediction = prediction(model, smiles)
+    return jsonify({'prediction': repr(molPrediction)})
+
+
+@app.route('/similar_actives')
+def similar_actives_endpoint():
+    base = request.args.get('base')
+    model = request.args.get('model')
+    similar_actives = get_similar_actives(base, model)
+    return jsonify({'similar_actives': repr(similar_actives)})
+
+
+@app.route('/standardize_smiles')
+def standardize_smiles_endpoint():
+    smiles = request.args.get('smiles')
+    standardized = standardize_smiles(smiles)
+    return jsonify({'standardize_smiles': repr(standardized)})
+
+
+@app.route('/descriptor_ad')
+def descriptor_ad_endpoint():
+    smiles = request.args.get('smiles')
+    enzyme = request.args.get('enzyme')
+    molDescriptor_ad = descriptor_ad(smiles, enzyme)
+    return jsonify({'descriptor_ad': repr(molDescriptor_ad)})
+
+
+@app.route('/fingerprint_ad')
+def fingerprint_ad_endpoint():
+    smiles = request.args.get('smiles')
+    enzyme_fp_list = request.args.get('enzyme_fp_list')
+    fingerprints = fingerprint_ad(smiles, enzyme_fp_list)
+    return jsonify({'fingerprint_ad': repr(fingerprints)})
+
+
+@app.route('/descriptors')
+def descriptors_endpoint():
+    smiles = request.args.get('smiles')
+    molDescriptors = descriptors(smiles)
+    return jsonify({'descriptors': repr(molDescriptors)})
+
+
+@app.route('/rule_of_five')
+def rule_of_five_endpoint():
+    values = request.args.get('values')
+    ro5pass = rule_of_five(values)
+    return jsonify({'rule_of_five': repr(ro5pass)})
+
+
+@app.route('/pass_pains')
+def pass_pains_endpoint():
+    smiles = request.args.get('smiles')
+    pains = pass_pains(smiles)
+    return jsonify({'pass_pains': repr(pains)})
+
+
+@app.route('/pains_highlight')
+def pains_highlight_endpoint():
+    smiles = request.args.get('smiles')
+    pains = pains_highlight(smiles)
+    return jsonify({'pains_highlight': repr(pains)})
 
 
 if __name__ == '__main__':
