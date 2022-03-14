@@ -1,7 +1,10 @@
+import React from 'react';
 import { Box, Button, Grid, Paper, TextField } from "@material-ui/core";
-import { Add as AddIcon,
-         Clear as ClearIcon,
-         Search as SearchIcon } from "@material-ui/icons";
+import {
+  Add as AddIcon,
+  Clear as ClearIcon,
+  Search as SearchIcon
+} from "@material-ui/icons";
 import Layout from "../components/layout/Layout";
 import useStyles from "../components/layout/style";
 import LoadDrugButton from "../components/draw/LoadDrugButton";
@@ -49,7 +52,7 @@ const Draw = () => {
     }
   }
 
-  return(
+  return (
     <Layout>
       <Grid container spacing={2}>
         <Grid item xs>
@@ -113,8 +116,8 @@ const Draw = () => {
             </Box>
           </Paper>
 
-          <Paper className={classes.paper} style={{align: 'center'}}>
-            <StructuresUploadButton addStructures={addToDataset}/>
+          <Paper className={classes.paper} style={{ align: 'center' }}>
+            <StructuresUploadButton addStructures={addToDataset} />
             <p>* File format: Files that contain multiple SMILES codes need to list one code per line followed by the name of the compound (separated by a space or tab). If no compound name is given, 'unnamed' will be assigned. These files have to carry a '.smi' or '.smiles' extension.</p>
           </Paper>
         </Grid>

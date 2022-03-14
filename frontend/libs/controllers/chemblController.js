@@ -1,4 +1,5 @@
-import fetch from "node-fetch";
+import axios from 'axios';
+//import fetch from "node-fetch";
 import ChEMBL from "../models/chembl";
 
 //https://chembl.gitbook.io/chembl-interface-documentation/web-services/chembl-data-web-services
@@ -68,9 +69,8 @@ class ChEMBLFactory {
   static async similarity(smiles) {
     const url = this.URL_SIMILARITY.replace("<SMILES>", encodeURIComponent(smiles));
     try {
-      const res = await fetch(url);
-      const data = await res.json();
-      return this.parse(data);
+      const resp = await axios.get(url);
+      return this.parse(resp.data);
     } catch (err) {
       console.log(err);
     }

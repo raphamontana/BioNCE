@@ -8,7 +8,7 @@ import useStyles from '../components/layout/style';
 const Home = () => {
   const classes = useStyles();
 
-  return(
+  return (
     <Layout>
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -36,6 +36,11 @@ const Home = () => {
               <a href="/ml" className="card">
                 <h3>Discover &rarr;</h3>
                 <p>Apply Machine Learning to discover Bioactive NCE.</p>
+              </a>
+
+              <a href="/targets" className="card">
+                <h3>Targets &rarr;</h3>
+                <p>Test target receptors.</p>
               </a>
 
               <a href="/help" className="card">

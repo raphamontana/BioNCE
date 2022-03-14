@@ -1,4 +1,5 @@
-import { DropzoneDialog } from 'material-ui-dropzone'
+import React from 'react';
+import { DropzoneDialog } from 'material-ui-dropzone';
 import Button from '@material-ui/core/Button';
 import UploadIcon from '@material-ui/icons/CloudUpload';
 

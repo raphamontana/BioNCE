@@ -1,7 +1,10 @@
+import React from 'react';
 import { SimpleImg } from 'react-simple-img';
 import { makeStyles } from '@material-ui/styles';
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, FormControl,
-         IconButton, InputLabel, MenuItem , Select, Tooltip } from '@material-ui/core';
+import {
+  Avatar, Button, Card, CardActions, CardContent, CardHeader, FormControl,
+  IconButton, InputLabel, MenuItem, Select, Tooltip
+} from '@material-ui/core';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import LinkIcon from '@material-ui/icons/Link';
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
@@ -27,11 +30,11 @@ const PDBStructure = ({ structure }) => {
   const classes = useStyles();
   const [ligand, setLigand] = React.useState(structure.ligands[0]);
 
-  return(
+  return (
     <>
       <NGL
-        pdbFile={ `rcsb://${ structure.id }` }
-        viewportId={ `viewport-${ structure.id }` }
+        pdbFile={`rcsb://${structure.id}`}
+        viewportId={`viewport-${structure.id}`}
       />
       <p><b>Structure:</b> <a href={`https://www.rcsb.org/structure/${structure.id}`} target="_blank">{structure.id}</a></p>
       <p><b>Description:</b> {structure.description}</p>
@@ -62,7 +65,7 @@ const PDBStructure = ({ structure }) => {
         size="small"
         color="primary"
         href={`https://www.rcsb.org/3d-view/${structure.id}?preset=ligandInteraction&sele=${ligand}`}
-        startIcon={<ThreeDRotationIcon/>}
+        startIcon={<ThreeDRotationIcon />}
       >
         3D interaction
       </Button>
@@ -75,16 +78,16 @@ const PDBCard = ({ data }) => {
   const [structureIndex, setStructureIndex] = React.useState(0);
 
   if (typeof data === "undefined") {
-    return(null);
+    return (null);
   }
 
-  return(
+  return (
     <Card className={classes.card}>
       <CardHeader
         avatar={
           <a
             aria-label="PDB link"
-            href={ `https://www.rcsb.org/ligand/${data.id}` }
+            href={`https://www.rcsb.org/ligand/${data.id}`}
             target="_blank"
           >
             <Avatar variant="rounded" alt="PDB icon" src="http://www.rcsb.org/favicon.ico" />
@@ -98,7 +101,7 @@ const PDBCard = ({ data }) => {
             <GetAppIcon />
           </IconButton>
         }
-        title={ `Ligand ${data.id}` }
+        title={`Ligand ${data.id}`}
         subheader="Protein Data Bank"
       />
       <CardContent>
@@ -109,9 +112,9 @@ const PDBCard = ({ data }) => {
             height={100}
           />
         </div>
-        <Attribute name="Name" value={ data.name } />
-        <MolecularFormula formula={ data.formula } />
-        <Attribute name="Molecular Mass" value={ `${parseFloat(data.weight).toFixed(2)}` } />
+        <Attribute name="Name" value={data.name} />
+        <MolecularFormula formula={data.formula} />
+        <Attribute name="Molecular Mass" value={`${parseFloat(data.weight).toFixed(2)}`} />
 
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="structures-label">Structures</InputLabel>

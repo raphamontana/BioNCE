@@ -1,4 +1,5 @@
 // material-ui/examples/nextjs/pages/_document.js
+import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import theme from '../components/ui/theme/light';

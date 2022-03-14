@@ -1,12 +1,13 @@
+import React from 'react';
 import { Box, Button, Grid, TextField, Typography } from '@material-ui/core';
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary } from "./ExpansionPanel"
+import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary } from './ExpansionPanel';
 import { Add as AddIcon } from '@material-ui/icons';
-import AlertDialog from "./AlertDialog"
-import JSMEComponent from "../draw/JSMEComponent"
-import StructuresUploadButton from "../draw/StructuresUploadButton"
-import StructuresListComponent from "../draw/StructuresListComponent"
+import AlertDialog from './AlertDialog';
+import JSMEComponent from '../draw/JSMEComponent';
+import StructuresUploadButton from '../draw/StructuresUploadButton';
+import StructuresListComponent from '../draw/StructuresListComponent';
 import useStyles from '../layout/style';
-import SMILES from "../../libs/models/SMILES";
+import SMILES from '../../libs/models/SMILES';
 
 const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
   const classes = useStyles();
@@ -43,7 +44,7 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
     setExpanded(newExpanded ? panel : false);
   };
 
-  return(
+  return (
     <>
       <Grid
         container
@@ -130,12 +131,12 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
               <Typography>#3 Upload file</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <StructuresUploadButton addStructures={addToDataset}/>
+              <StructuresUploadButton addStructures={addToDataset} />
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Grid>
         <Grid item xs>
-          <StructuresListComponent structures={dataset} setStructures={setDataset}/>
+          <StructuresListComponent structures={dataset} setStructures={setDataset} />
         </Grid>
       </Grid>
       <Button disabled={true} className={classes.button}>

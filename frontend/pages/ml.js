@@ -1,8 +1,9 @@
+import React from 'react';
 import { Step, Stepper, StepLabel } from '@material-ui/core';
-import DatasetComponent from "../components/ml/DatasetComponent"
-import ModelSelectComponent from "../components/ml/ModelSelectComponent"
-import ResultsComponent from "../components/ml/ResultsComponent"
-import ReviewComponent from "../components/ml/ReviewComponent"
+import DatasetComponent from '../components/ml/DatasetComponent';
+import ModelSelectComponent from '../components/ml/ModelSelectComponent';
+import ResultsComponent from '../components/ml/ResultsComponent';
+import ReviewComponent from '../components/ml/ReviewComponent';
 import Layout from '../components/layout/Layout';
 
 const ML = () => {
@@ -31,7 +32,7 @@ const ML = () => {
         {steps.map((label, index) => {
           const stepProps = {};
           const labelProps = {};
-          return(
+          return (
             <Step key={label} {...stepProps}>
               <StepLabel {...labelProps}>{label}</StepLabel>
             </Step>

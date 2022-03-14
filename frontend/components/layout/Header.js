@@ -1,5 +1,8 @@
-import { AppBar, Avatar, Button, IconButton,
-         InputBase, Link, Toolbar } from '@material-ui/core';
+import React from 'react';
+import {
+  AppBar, Avatar, Button, IconButton,
+  InputBase, Link, Toolbar
+} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './style';
 
@@ -41,7 +44,7 @@ const Header = () => {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-              onKeyDown={(e) => submitOnEnter(e) }
+              onKeyDown={(e) => submitOnEnter(e)}
             />
           </form>
         </div>

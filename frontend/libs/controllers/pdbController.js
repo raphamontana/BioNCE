@@ -2,6 +2,7 @@
  * PDB Controller module.
  * @module controller/pdb
  */
+import axios from "axios";
 import fetch from "node-fetch";
 import xml2js from "xml2js";
 import PDBLigand from "../models/pdb_ligand";
@@ -20,10 +21,10 @@ function compare(a, b) {
   const structureA = a.id.toUpperCase();
   const structureB = b.id.toUpperCase();
   if (structureA > structureB) {
-    return(1);
+    return (1);
   } else if (structureA < structureB) {
-    return(-1);
-  } else return(0);
+    return (-1);
+  } else return (0);
 }
 
 
@@ -95,6 +96,7 @@ class PDBFactory {
     let structureUrl = this.STRUCTURES_URL.replace("<STRUCTUREID>", structureId);
     let ligandUrl = this.LIGANDS_URL.replace("<STRUCTUREID>", structureId);
     try {
+      //const structureRes = await axios.get(structureUrl);
       const structureRes = await fetch(structureUrl);
       if (!structureRes.ok) return;
       let structureXml = await structureRes.text();

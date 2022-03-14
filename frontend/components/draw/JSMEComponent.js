@@ -1,20 +1,13 @@
 import { useEffect } from 'react';
-import dynamic from 'next/dynamic';
+import Script from 'next/script'
 
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
-const NonSSRHead = dynamic(
-  () => import('next/head'),
-  {
-    ssr: false,
-    loading: () => <p>Loading JSME...</p>
-  }
-);
 
 export function JSMEAcknowledgement() {
-  return(
+  return (
     <Box pt={4}>
       <Typography variant="body2" color="textSecondary" align="center">
         <Link href="http://peter-ertl.com/jsme/" target="_blank">JSME</Link>
@@ -42,12 +35,10 @@ function JSMEComponent({ callback }) {
     window.jsmeOnLoad = jsmeOnLoad;
   });
 
-  return(
+  return (
     <>
-      <NonSSRHead>
-        <script type="text/javascript" src="https://peter-ertl.com/jsme/JSME_2020-06-11/jsme/jsme.nocache.js" />
-      </NonSSRHead>
-      <div id={ "jsme_container" } style={{height: '311px'}} />
+      <Script src="https://cdn.rawgit.com/jsme-editor/jsme-editor.github.io/main/dist/jsme/jsme.nocache.js" strategy="lazyOnload" />
+      <div id={"jsme_container"} style={{ height: '311px' }} />
     </>
   );
 }

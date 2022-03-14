@@ -16,6 +16,7 @@ from functions.exmol_apply import get_similar_actives
 from functions.filter_Ro5 import rule_of_five
 from functions.pains import pass_pains, pains_highlight
 from functions.standardize import standardize_smiles
+from functions.fingerprint import getFingerprint
 
 from flask import Flask, jsonify, request
 
@@ -100,6 +101,13 @@ def pains_highlight_endpoint():
     smiles = request.args.get('smiles')
     pains = pains_highlight(smiles)
     return jsonify({'pains_highlight': repr(pains)})
+
+
+@app.route('/fingerprint')
+def fingerprint_endpoint():
+    smiles = request.args.get('smiles')
+    fingerprint = getFingerprint(smiles)
+    return jsonify({'fingerprint': repr(fingerprint)})
 
 
 if __name__ == '__main__':

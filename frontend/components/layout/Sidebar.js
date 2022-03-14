@@ -1,3 +1,4 @@
+import React from 'react';
 import clsx from 'clsx';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
@@ -32,11 +33,11 @@ export default function appbar() {
 
   return (
     <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
+      variant="permanent"
+      classes={{
+        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+      }}
+      open={open}
     >
       <div className={classes.toolbarIcon} />
       <Divider />
@@ -91,7 +92,7 @@ export default function appbar() {
       </List>
       <Divider />
       <List>
-      <ListSubheader inset>Brought to you by:</ListSubheader>
+        <ListSubheader inset>Brought to you by:</ListSubheader>
         <MuiLink color="inherit" href="http://nequimed.iqsc.usp.br/" target="_blank">
           <ListItem button>
             <ListItemAvatar>
