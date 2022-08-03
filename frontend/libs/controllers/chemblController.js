@@ -14,9 +14,10 @@ class ChEMBLFactory {
     "https://www.ebi.ac.uk/chembl/api/data/substructure/<SMILES>.json";
 
   static parse(json) {
-    if (!json) return;
+    if (!json || json.molecules.length == 0) return;
     let i = json.molecules.findIndex(
       (m) =>
+        m.molecule_hierarchy &&
         m.molecule_hierarchy.molecule_chembl_id ==
         m.molecule_hierarchy.parent_chembl_id
     );

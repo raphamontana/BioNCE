@@ -1,10 +1,10 @@
 import useSWR from "swr";
 
-import LinearProgress from "@material-ui/core/LinearProgress";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import LinearProgress from '@mui/material/LinearProgress';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import SMILES from "../../libs/models/SMILES";
 import BindingCard from "./BindingCard";
@@ -25,17 +25,17 @@ const MoleculeComponent = ({ id, smiles }) => {
   let { chembl, pubchem, pdb, bindings } = data;
 
   return(
-    <ExpansionPanel defaultExpanded>
-      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} id={ "ep" + id } >
+    <Accordion defaultExpanded>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} id={ "ep" + id } >
         <p>SMILES: { smiles }</p>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
+      </AccordionSummary>
+      <AccordionDetails>
         <PubChemCard data={pubchem} />
         <ChEMBLCard data={chembl} />
         <PDBCard data={pdb} />
         <BindingCard ligand={pdb} bindings={bindings} />
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionDetails>
+    </Accordion>
   );
 };
 

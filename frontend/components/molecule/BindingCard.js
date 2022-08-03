@@ -1,4 +1,4 @@
-import ReactHtmlParser from 'react-html-parser';
+import HTMLParser from 'fast-html-parser';
 import { makeStyles } from '@material-ui/styles';
 import { Avatar, Card, CardContent, CardHeader, Grid, IconButton } from '@material-ui/core';
 import LinkIcon from '@material-ui/icons/Link';
@@ -30,14 +30,14 @@ const InhibitionConstant = ({ measure, value, unit }) => {
   let pValue = Math.log10(1 / value).toFixed(1);
   return(
     <>
-      { ReactHtmlParser('p'+measure) } {" = " + pValue}
+      { HTMLParser.parse(`p${measure}`) } {" = " + pValue}
     </>
   );
 }
 
 const BindingInfo = ({ binding }) => {
   return(
-    <Grid container justify="space-between">
+    <Grid container justifyContent="space-between">
       <Grid item>
         <b>{ binding.ligand }:</b> {"(Chain "} { binding.chain }{') '}
       </Grid>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Button, Grid, TextField, Typography } from '@material-ui/core';
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary } from './ExpansionPanel';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import { Add as AddIcon } from '@material-ui/icons';
 import AlertDialog from './AlertDialog';
 import JSMEComponent from '../draw/JSMEComponent';
@@ -55,11 +57,11 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
       >
         <Grid item xs>
           <Typography variant="h6" color="initial">DATASET INPUT</Typography>
-          <ExpansionPanel square expanded={expanded === 'panel1'} onChange={handleExpansion('panel1')}>
-            <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
+          <Accordion square expanded={expanded === 'panel1'} onChange={handleExpansion('panel1')}>
+            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
               <Typography>#1 Draw</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
+            </AccordionSummary>
+            <AccordionDetails>
               <Grid
                 container
                 direction="column"
@@ -89,13 +91,13 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
                   </Box>
                 </Grid>
               </Grid>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel square expanded={expanded === 'panel2'} onChange={handleExpansion('panel2')}>
-            <ExpansionPanelSummary aria-controls="panel2d-content" id="panel2d-header">
+            </AccordionDetails>
+          </Accordion>
+          <Accordion square expanded={expanded === 'panel2'} onChange={handleExpansion('panel2')}>
+            <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
               <Typography>#2 Write</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
+            </AccordionSummary>
+            <AccordionDetails>
               <Grid
                 container
                 direction="column"
@@ -124,16 +126,16 @@ const DatasetComponent = ({ dataset, setDataset, handleNext }) => {
                   </Button>
                 </Grid>
               </Grid>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel square expanded={expanded === 'panel3'} onChange={handleExpansion('panel3')}>
-            <ExpansionPanelSummary aria-controls="panel3d-content" id="panel3d-header">
+            </AccordionDetails>
+          </Accordion>
+          <Accordion square expanded={expanded === 'panel3'} onChange={handleExpansion('panel3')}>
+            <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
               <Typography>#3 Upload file</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
+            </AccordionSummary>
+            <AccordionDetails>
               <StructuresUploadButton addStructures={addToDataset} />
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
+            </AccordionDetails>
+          </Accordion>
         </Grid>
         <Grid item xs>
           <StructuresListComponent structures={dataset} setStructures={setDataset} />

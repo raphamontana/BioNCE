@@ -4,7 +4,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 const Attribute = ({ name, value, tooltip }) => {
   let tooltipText = tooltip ? tooltip : name;
   return(
-    <Grid container justify="space-between">
+    <Grid container justifyContent="space-between">
       <Grid item>
         <Tooltip title={ tooltipText } enterDelay={ 500 }>
           <b>{ name }:</b>

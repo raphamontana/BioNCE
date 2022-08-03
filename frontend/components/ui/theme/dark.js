@@ -1,4 +1,4 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles'
 
 const darkPalette = {
   palette: {
@@ -8,4 +8,4 @@ const darkPalette = {
 const themeName = 'BioNCE dark theme';
 
 // Create a theme instance.
-export default createMuiTheme({ darkPalette, themeName });
+export default createTheme({ darkPalette, themeName });

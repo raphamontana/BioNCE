@@ -50,6 +50,9 @@ const Draw = () => {
     if (dataset.length === 0) {
       event.preventDefault();
     }
+    else {
+      window.localStorage.setItem('molecules', JSON.stringify(dataset));
+    }
   }
 
   return (
@@ -90,7 +93,7 @@ const Draw = () => {
               value={smilesList}
               onChange={e => setSmilesList(e.target.value)}
               multiline
-              rows={10}
+              minRows={10}
               className={classes.textfield}
             />
             <Box display="inline">
