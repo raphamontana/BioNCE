@@ -30,7 +30,7 @@
     "@fortawesome/react-fontawesome": "latest",
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.1",
-    "axios": "latest",
+    "axios": "^1.16.1",
     "clsx": "latest",
     "fast-html-parser": "^1.0.1",
     "formidable": "latest",
